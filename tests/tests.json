@@ -26,13 +26,16 @@
       "services",
       "about introduction",
       "email and phone contact",
-      "responsive layout"
+      "responsive layout",
+      "uploaded header logo",
+      "logo alignment"
     ],
     "description": "Verify mobile visitors can reach the portfolio content and contact options.",
     "steps": [
+      "Confirm the Phemxy Concepts logo is at the top right, fits the header, and returns to Home when tapped.",
       "Open Menu and choose Services.",
       "Read the four service offerings, then open Menu and choose About me.",
-      "Read the introduction and follow Let’s create something together.",
+      "Read the introduction and follow Let\u2019s create something together.",
       "Inspect the email and phone links."
     ],
     "expected": "The menu closes after navigation, content fits the viewport, and contact links use mailto:helfhelm7@gmail.com and tel:+2348102373011."
@@ -44,15 +47,36 @@
       "reduced motion",
       "project modal focus",
       "non-destructive exit",
-      "project enquiry"
+      "project enquiry",
+      "rotating service text",
+      "floating work showcase"
     ],
     "description": "Verify the gallery remains usable with reduced motion and project viewing can be cancelled.",
     "steps": [
       "Enable reduced motion in the browser.",
-      "Confirm the moving text and decorative star stop animating.",
+      "Confirm the moving marquee, floating work cards, and rotating service text stop animating.",
       "Open a project and close it using Close.",
       "Open it again and choose Discuss a similar project."
     ],
     "expected": "The project can be closed without navigation or side effects; the enquiry link closes the dialog and reaches Contact, and animation remains disabled."
+  },
+  {
+    "name": "Pause motion and keep layout usable",
+    "viewport": "desktop",
+    "covers": [
+      "motion pause and resume",
+      "staggered hero entrances",
+      "scroll reveals",
+      "sticky header",
+      "centered section alignment"
+    ],
+    "description": "Verify moving elements can be paused and resumed without hiding content or blocking navigation.",
+    "steps": [
+      "Confirm the hero content is centered and the two work images appear beneath its introduction.",
+      "Scroll to the project area and click Pause motion.",
+      "Confirm the moving marquee and rotating service text stop; inspect the services and About content.",
+      "Click Play motion, then navigate back to Home."
+    ],
+    "expected": "The motion resumes, all content remains readable and reachable, the header remains available, and the logo retains its proportions."
   }
 ]

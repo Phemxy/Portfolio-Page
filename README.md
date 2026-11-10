@@ -1,6 +1,6 @@
 # Phemxy — Kreative Designer
 
-Responsive portfolio for Phemxy, a brand specialist behind Phemxy Concepts. The site includes selected branding and product work, services, an introduction, and email and telephone contact links. Its magenta, plum, orange, and white palette comes from the supplied portfolio PDF.
+Responsive portfolio for Phemxy, a brand specialist behind Phemxy Concepts. The site includes selected branding and product work, services, an introduction, and email and telephone contact links. Its magenta, plum, orange, and white palette comes from the supplied portfolio PDF. The centered hero, staggered entrances, floating work cards, rotating service text, and continuous marquee follow the requested Upscayl direction. Visitors can pause motion, and system reduced-motion changes take effect immediately.
 
 ## Run locally
 
@@ -38,6 +38,7 @@ To use an existing Chromium installation, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PA
 - `src/styles.css`: responsive styles, colors, and motion.
 - `src/main.ts`: navigation, project filters, and accessible image dialogs.
 - `public/resources/`: images extracted from the supplied portfolio PDF.
+- The original Phemxy Concepts logo is an uploaded AppDeploy resource. The HTML uses its hosted URL so the same logo appears when this repository is hosted elsewhere.
 - `tests/portfolio.spec.ts`: executable browser checks.
 - `tests/tests.json`: workflow descriptions prepared for AppDeploy validation.
 
