@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Filter and explore selected work",
+    "sanity": true,
+    "viewport": "desktop",
+    "covers": [
+      "project filtering",
+      "project details",
+      "keyboard dismissal",
+      "gallery reset"
+    ],
+    "description": "Verify visitors can filter work and inspect a project.",
+    "steps": [
+      "Select Branding and confirm only the branding collection remains.",
+      "Open Identities with character and inspect its image and description.",
+      "Press Escape to close the project.",
+      "Select All work."
+    ],
+    "expected": "Both collections are visible again, with focus restored after closing the dialog."
+  },
+  {
+    "name": "Navigate services and contact on mobile",
+    "viewport": "mobile",
+    "covers": [
+      "mobile navigation",
+      "services",
+      "about introduction",
+      "email and phone contact",
+      "responsive layout"
+    ],
+    "description": "Verify mobile visitors can reach the portfolio content and contact options.",
+    "steps": [
+      "Open Menu and choose Services.",
+      "Read the four service offerings, then open Menu and choose About me.",
+      "Read the introduction and follow Let’s create something together.",
+      "Inspect the email and phone links."
+    ],
+    "expected": "The menu closes after navigation, content fits the viewport, and contact links use mailto:helfhelm7@gmail.com and tel:+2348102373011."
+  },
+  {
+    "name": "Respect motion preferences and allow leaving project view",
+    "viewport": "mobile",
+    "covers": [
+      "reduced motion",
+      "project modal focus",
+      "non-destructive exit",
+      "project enquiry"
+    ],
+    "description": "Verify the gallery remains usable with reduced motion and project viewing can be cancelled.",
+    "steps": [
+      "Enable reduced motion in the browser.",
+      "Confirm the moving text and decorative star stop animating.",
+      "Open a project and close it using Close.",
+      "Open it again and choose Discuss a similar project."
+    ],
+    "expected": "The project can be closed without navigation or side effects; the enquiry link closes the dialog and reaches Contact, and animation remains disabled."
+  }
+]
