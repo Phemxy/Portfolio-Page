@@ -44,4 +44,4 @@ To use an existing Chromium installation, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PA
 - `tests/portfolio.spec.ts`: executable browser checks.
 - `tests/tests.json`: workflow descriptions prepared for AppDeploy validation.
 
-The visible title is **Phemxy — Kreative Designer**. The biography describes Phemxy as a **brand specialist**. The gallery includes the newly supplied artwork and branding slides. Contact details come from the original PDF, and the five social icons use the exact owner-supplied URLs for Pinterest, Facebook, Instagram, X, and TikTok, displayed as Phemxy7.
+The visible title is **Phemxy — Kreative Designer**. The biography describes Phemxy as a **brand specialist**, lists an HND in Computer Engineering from Yaba College of Technology, Lagos (2025), and includes Figma in the skills. The gallery includes the newly supplied artwork and branding slides. Contact details come from the original PDF, and the five social icons use the exact owner-supplied URLs for Pinterest, Facebook, Instagram, X, and TikTok, displayed as Phemxy7.

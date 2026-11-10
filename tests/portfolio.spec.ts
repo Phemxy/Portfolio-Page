@@ -54,7 +54,7 @@ test('mobile visitors can reach the updated portrait, services, and contact', as
   await expect(page.locator('#about')).toContainText('brand specialist');
   await expect(page.locator('#about img')).toHaveAttribute(
     'src',
-    /frame-01\.jpg$/,
+    /frame-01\.png$/,
   );
   await expect(page.locator('#about img')).toHaveAttribute(
     'alt',
