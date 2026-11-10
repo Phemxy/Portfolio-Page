@@ -1,25 +1,28 @@
 [
   {
-    "name": "Filter and explore selected work",
+    "name": "Filter and explore the expanded work gallery",
     "sanity": true,
     "viewport": "desktop",
     "covers": [
-      "project filtering",
+      "expanded gallery",
+      "category filtering",
+      "PDF selections",
+      "both supplied branding slides",
       "project details",
       "keyboard dismissal",
       "gallery reset"
     ],
     "description": "Verify visitors can filter work and inspect a project.",
     "steps": [
-      "Select Branding and confirm only the branding collection remains.",
-      "Open Identities with character and inspect its image and description.",
-      "Press Escape to close the project.",
+      "Select Packaging and confirm only packaging projects remain.",
+      "Select Branding and open Blinders Cut \u2014 Brand Identity.",
+      "Inspect its full image and description, then press Escape.",
       "Select All work."
     ],
-    "expected": "Both collections are visible again, with focus restored after closing the dialog."
+    "expected": "The branding preview shows its PDF artwork; closing restores focus and All work restores all 25 projects."
   },
   {
-    "name": "Navigate services and contact on mobile",
+    "name": "Navigate the updated portrait and contact on mobile",
     "viewport": "mobile",
     "covers": [
       "mobile navigation",
@@ -28,37 +31,42 @@
       "email and phone contact",
       "responsive layout",
       "uploaded header logo",
-      "logo alignment"
+      "logo alignment",
+      "frame 1 portrait",
+      "left aligned smaller logo",
+      "larger typography",
+      "Phemxy7 social destinations"
     ],
     "description": "Verify mobile visitors can reach the portfolio content and contact options.",
     "steps": [
-      "Confirm the Phemxy Concepts logo is at the top right, fits the header, and returns to Home when tapped.",
-      "Open Menu and choose Services.",
-      "Read the four service offerings, then open Menu and choose About me.",
-      "Read the introduction and follow Let\u2019s create something together.",
-      "Inspect the email and phone links."
+      "Confirm the smaller Phemxy Concepts logo appears at the top left.",
+      "Open Menu and choose Services, then navigate to About me.",
+      "Confirm the new purple-background portrait is shown with its full composition.",
+      "Read the introduction and follow the contact link.",
+      "Inspect the Pinterest, Facebook, Instagram, X, and TikTok icons; confirm every destination uses Phemxy7."
     ],
-    "expected": "The menu closes after navigation, content fits the viewport, and contact links use mailto:helfhelm7@gmail.com and tel:+2348102373011."
+    "expected": "The new portrait is visible, the text is more readable, navigation closes correctly, and the email and phone links remain available without horizontal overflow. All five social links use the Phemxy7 handle and open safely in a new tab."
   },
   {
-    "name": "Respect motion preferences and allow leaving project view",
+    "name": "Browse every view of a multi-image project",
     "viewport": "mobile",
     "covers": [
+      "multi-image project gallery",
+      "next and previous images",
+      "image thumbnails",
+      "keyboard image navigation",
       "reduced motion",
-      "project modal focus",
       "non-destructive exit",
-      "project enquiry",
-      "rotating service text",
-      "floating work showcase"
+      "project enquiry"
     ],
     "description": "Verify the gallery remains usable with reduced motion and project viewing can be cancelled.",
     "steps": [
-      "Enable reduced motion in the browser.",
-      "Confirm the moving marquee, floating work cards, and rotating service text stop animating.",
-      "Open a project and close it using Close.",
-      "Open it again and choose Discuss a similar project."
+      "Enable reduced motion and filter to Print & events.",
+      "Open Blessing & Moyosore \u2014 Event Collection.",
+      "Use Next to reach image 2, select thumbnail 3, then use ArrowLeft and Previous.",
+      "Close with Escape, reopen the project, and choose Discuss a similar project."
     ],
-    "expected": "The project can be closed without navigation or side effects; the enquiry link closes the dialog and reaches Contact, and animation remains disabled."
+    "expected": "The gallery cycles through the two wristband designs and cup mockup with the correct counter; Escape returns focus and the enquiry link reaches Contact without losing the scroll position."
   },
   {
     "name": "Pause motion and keep layout usable",
@@ -68,11 +76,14 @@
       "staggered hero entrances",
       "scroll reveals",
       "sticky header",
-      "centered section alignment"
+      "centered section alignment",
+      "uploaded portfolio image loading",
+      "complete artwork framing"
     ],
     "description": "Verify moving elements can be paused and resumed without hiding content or blocking navigation.",
     "steps": [
       "Confirm the hero content is centered and the two work images appear beneath its introduction.",
+      "Inspect the selected-work cards and open the Plantain Chips, Fufu Powder, and portrait images; confirm no image is broken and the full artwork fits its frame.",
       "Scroll to the project area and click Pause motion.",
       "Confirm the moving marquee and rotating service text stop; inspect the services and About content.",
       "Click Play motion, then navigate back to Home."

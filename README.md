@@ -1,6 +1,6 @@
 # Phemxy — Kreative Designer
 
-Responsive portfolio for Phemxy, a brand specialist behind Phemxy Concepts. The site includes selected branding and product work, services, an introduction, and email and telephone contact links. Its magenta, plum, orange, and white palette comes from the supplied portfolio PDF. The centered hero, staggered entrances, floating work cards, rotating service text, and continuous marquee follow the requested Upscayl direction. Visitors can pause motion, and system reduced-motion changes take effect immediately.
+Responsive portfolio for Phemxy, a brand specialist behind Phemxy Concepts. The site includes selected branding and product work, services, an introduction, and email and telephone contact links. The gallery groups 24 newly supplied work images into 20 projects and adds three selections from the original PDF plus both slides from the additional branding PDF. Related packaging views and event items can be browsed inside a project using buttons, thumbnails, or arrow keys. Its magenta, plum, orange, and white palette comes from the supplied portfolio PDF. The centered hero, staggered entrances, floating work cards, rotating service text, and continuous marquee follow the requested Upscayl direction. Visitors can pause motion, and system reduced-motion changes take effect immediately.
 
 ## Run locally
 
@@ -36,10 +36,12 @@ To use an existing Chromium installation, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PA
 
 - `index.html`: title, biography, services, project descriptions, and contact links.
 - `src/styles.css`: responsive styles, colors, and motion.
-- `src/main.ts`: navigation, project filters, and accessible image dialogs.
+- `src/main.ts`: navigation, project filters, multi-image previews, and motion controls.
+- `src/projects.ts`: project descriptions, categories, and image groups.
 - `public/resources/`: images extracted from the supplied portfolio PDF.
-- The original Phemxy Concepts logo is an uploaded AppDeploy resource. The HTML uses its hosted URL so the same logo appears when this repository is hosted elsewhere.
+- The logo, updated portrait (frame 1), and new work images (frames 2–25) are uploaded AppDeploy resources. The HTML and project data use their hosted URLs so they also appear when the repository is hosted elsewhere.
+- The logo is smaller and left-aligned. Explicit type sizes are increased by 1px, including responsive headings; the About portrait uses its full 4:5 composition.
 - `tests/portfolio.spec.ts`: executable browser checks.
 - `tests/tests.json`: workflow descriptions prepared for AppDeploy validation.
 
-The visible title is **Phemxy — Kreative Designer**. The biography describes Phemxy as a **brand specialist**. The current artwork and contact details come from the supplied PDF and can be updated with newer material.
+The visible title is **Phemxy — Kreative Designer**. The biography describes Phemxy as a **brand specialist**. The gallery includes the newly supplied artwork and branding slides. Contact details come from the original PDF, and the five social profile links use Phemxy7 on Pinterest, Facebook, Instagram, X, and TikTok.

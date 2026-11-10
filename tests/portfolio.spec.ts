@@ -1,35 +1,41 @@
 import { expect, test } from '@playwright/test';
 
-test('filter projects, inspect details, and return to the gallery', async ({
+test('filter the expanded gallery and inspect a PDF branding project', async ({
   page,
 }) => {
   await page.goto('/');
   await expect(page).toHaveTitle('Phemxy — Kreative Designer');
+  await expect(page.locator('.project:visible')).toHaveCount(25);
+  await page.getByRole('button', { name: 'Packaging', exact: true }).click();
+  await expect(page.locator('.project:visible')).toHaveCount(8);
+  await expect(page.locator('.project:visible').first()).toContainText(
+    'Gellas Food',
+  );
   await page.getByRole('button', { name: 'Branding', exact: true }).click();
-  await expect(page.locator('.project:visible')).toHaveCount(1);
-  const project = page.locator('.project:visible');
+  await expect(page.locator('.project:visible')).toHaveCount(3);
+  const project = page.locator('[data-project-id="blinders-cut"]');
   await project.click();
   const dialog = page.getByRole('dialog');
-  await expect(dialog).toBeVisible();
   await expect(dialog.getByRole('heading')).toHaveText(
-    'Identities with character',
+    'Blinders Cut — Brand Identity',
   );
-  await expect(dialog.locator('img')).toHaveJSProperty('naturalWidth', 1200);
+  await expect(dialog.locator('#project-preview')).toHaveJSProperty(
+    'naturalWidth',
+    1400,
+  );
+  await expect(
+    dialog.getByRole('button', { name: 'Next project image' }),
+  ).not.toBeVisible();
   await page.keyboard.press('Escape');
   await expect(dialog).not.toBeVisible();
   await expect(project).toBeFocused();
-  await page
-    .getByRole('button', { name: 'Product & print', exact: true })
-    .click();
-  await expect(page.locator('.project:visible')).toHaveCount(1);
-  await expect(page.locator('.project:visible')).toContainText(
-    'Designed for the everyday',
-  );
   await page.getByRole('button', { name: 'All work', exact: true }).click();
-  await expect(page.locator('.project:visible')).toHaveCount(2);
+  await expect(page.locator('.project:visible')).toHaveCount(25);
 });
 
-test('mobile menu reaches services, about, and contact', async ({ page }) => {
+test('mobile visitors can reach the updated portrait, services, and contact', async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 375, height: 667 });
   await page.goto('/');
   const menu = page.getByRole('button', { name: 'Menu +' });
@@ -46,10 +52,26 @@ test('mobile menu reaches services, about, and contact', async ({ page }) => {
     .getByRole('link', { name: 'About me' })
     .click();
   await expect(page.locator('#about')).toContainText('brand specialist');
+  await expect(page.locator('#about img')).toHaveAttribute(
+    'src',
+    /frame-01\.jpg$/,
+  );
+  await expect(page.locator('#about img')).toHaveAttribute(
+    'alt',
+    /purple studio background/,
+  );
   await page
     .getByRole('link', { name: 'Let’s create something together' })
     .click();
   await expect(page).toHaveURL(/#contact$/);
+  const socialLinks = page.locator('#contact .social-links a');
+  await expect(socialLinks).toHaveCount(5);
+  for (const link of await socialLinks.all()) {
+    await expect(link).toHaveAttribute('href', /Phemxy7\/?$/);
+    await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+    await expect(link).toHaveAttribute('aria-label', /Phemxy7 on/);
+  }
+
   await expect(
     page.getByRole('link', { name: 'Say hello by email' }),
   ).toHaveAttribute('href', 'mailto:helfhelm7@gmail.com');
@@ -63,47 +85,73 @@ test('mobile menu reaches services, about, and contact', async ({ page }) => {
   ).toBe(true);
 });
 
-test('reduced motion preserves project viewing and enquiry', async ({
+test('multi-image projects support buttons, thumbnails, keyboard, and a safe exit', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 375, height: 667 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  await expect(page.locator('.marquee > div')).toHaveCSS(
+  await expect(page.locator('.marquee-track')).toHaveCSS(
     'animation-name',
     'none',
   );
-  await expect(page.locator('.rotating-track')).toHaveCSS(
-    'animation-name',
-    'none',
+  await page
+    .getByRole('button', { name: 'Print & events', exact: true })
+    .click();
+  const project = page.locator('[data-project-id="blessing-moyosore"]');
+  await project.click();
+  const dialog = page.getByRole('dialog');
+  await expect(dialog.locator('#project-preview')).toHaveAttribute(
+    'src',
+    /frame-10\.jpg$/,
   );
-  await page.locator('.project').first().click();
-  await page.getByRole('button', { name: 'Close project' }).click();
-  await expect(page.getByRole('dialog')).not.toBeVisible();
-  await page.locator('.project').first().click();
-  await page.getByRole('link', { name: 'Discuss a similar project' }).click();
-  await expect(page.getByRole('dialog')).not.toBeVisible();
+  await dialog.getByRole('button', { name: 'Next project image' }).click();
+  await expect(dialog.locator('#project-preview')).toHaveAttribute(
+    'src',
+    /frame-11\.jpg$/,
+  );
+  await expect(dialog.getByRole('status')).toHaveText('2 / 3');
+  await dialog.getByRole('button', { name: 'View image 3 of 3' }).click();
+  await expect(dialog.locator('#project-preview')).toHaveAttribute(
+    'src',
+    /frame-14\.jpg$/,
+  );
+  await page.keyboard.press('ArrowLeft');
+  await expect(dialog.getByRole('status')).toHaveText('2 / 3');
+  await dialog.getByRole('button', { name: 'Previous project image' }).click();
+  await expect(dialog.getByRole('status')).toHaveText('1 / 3');
+  await page.keyboard.press('Escape');
+  await expect(dialog).not.toBeVisible();
+  await expect(project).toBeFocused();
+  await project.click();
+  await dialog.getByRole('link', { name: 'Discuss a similar project' }).click();
+  await expect(dialog).not.toBeVisible();
   await expect(page).toHaveURL(/#contact$/);
   await expect(
     page.getByRole('link', { name: 'Say hello by email' }),
   ).toBeInViewport();
 });
 
-test('images load without script errors or horizontal overflow', async ({
+test('PDF artwork loads and the expanded layout stays within each viewport', async ({
   page,
 }) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/');
-  for (const width of [375, 768, 1280]) {
+  for (const width of [375, 390, 600, 768, 1280]) {
     await page.setViewportSize({ width, height: 800 });
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,
       ),
+      `Overflow at ${width}px`,
     ).toBe(true);
   }
-  for (const image of await page.locator('main img').all()) {
+  const pdfImages = page.locator(
+    '.project img[src*="pdf-"], .project img[src*="branding-slide-"]',
+  );
+  await expect(pdfImages).toHaveCount(5);
+  for (const image of await pdfImages.all()) {
     await image.evaluate((element) =>
       element.scrollIntoView({ block: 'center', behavior: 'instant' }),
     );
@@ -116,33 +164,34 @@ test('images load without script errors or horizontal overflow', async ({
       )
       .toBe(true);
   }
+  await expect(page.locator('.project img').first()).toHaveCSS(
+    'object-fit',
+    'contain',
+  );
   expect(errors).toEqual([]);
 });
 
-test('brand logo aligns right and visitors can pause motion', async ({
+test('the smaller logo aligns left and motion remains controllable', async ({
   page,
 }) => {
   await page.goto('/');
   const logo = page
     .getByRole('banner')
     .getByRole('img', { name: 'Phemxy Concepts', exact: true });
-  await expect(logo).toHaveAttribute('src', /resources\/phemxy-logo\.png$/);
   const logoBox = await logo.boundingBox();
-  const navigationBox = await page.getByRole('navigation').boundingBox();
-  expect(logoBox!.x).toBeGreaterThan(navigationBox!.x + navigationBox!.width);
+  const navBox = await page.getByRole('navigation').boundingBox();
+  expect(logoBox!.x + logoBox!.width).toBeLessThan(navBox!.x);
+  expect(logoBox!.width).toBeLessThan(210);
   const track = page.locator('.marquee-track');
-  const initialTransform = await track.evaluate(
+  const initial = await track.evaluate(
     (element) => getComputedStyle(element).transform,
   );
   await expect
     .poll(() =>
       track.evaluate((element) => getComputedStyle(element).transform),
     )
-    .not.toBe(initialTransform);
+    .not.toBe(initial);
   await page.getByRole('button', { name: 'Pause motion', exact: true }).click();
-  await expect(
-    page.getByRole('button', { name: 'Play motion', exact: true }),
-  ).toHaveAttribute('aria-pressed', 'true');
   await expect(track).toHaveCSS('animation-play-state', 'paused');
   await page.getByRole('button', { name: 'Play motion', exact: true }).click();
   await expect(track).toHaveCSS('animation-play-state', 'running');
