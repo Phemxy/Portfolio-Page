@@ -66,12 +66,21 @@ test('mobile visitors can reach the updated portrait, services, and contact', as
   await expect(page).toHaveURL(/#contact$/);
   const socialLinks = page.locator('#contact .social-links a');
   await expect(socialLinks).toHaveCount(5);
-  for (const link of await socialLinks.all()) {
-    await expect(link).toHaveAttribute('href', /Phemxy7\/?$/);
+  const expectedProfiles = {
+    Pinterest: 'https://pin.it/37pguH1BK',
+    Facebook: 'https://www.facebook.com/share/1DbZWNgLWM/',
+    Instagram: 'https://www.instagram.com/phemxy7?obrf=aXZ0MGwwano5cmZ6',
+    X: 'https://x.com/Phemxy7',
+    TikTok: 'https://www.tiktok.com/@phemxy7?_r=1&_t=ZS-9BIPNDBb0vU',
+  };
+  for (const [platform, destination] of Object.entries(expectedProfiles)) {
+    const link = page.getByRole('link', {
+      name: `Phemxy7 on ${platform}`,
+      exact: true,
+    });
+    await expect(link).toHaveAttribute('href', destination);
     await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
-    await expect(link).toHaveAttribute('aria-label', /Phemxy7 on/);
   }
-
   await expect(
     page.getByRole('link', { name: 'Say hello by email' }),
   ).toHaveAttribute('href', 'mailto:helfhelm7@gmail.com');

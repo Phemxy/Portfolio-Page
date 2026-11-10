@@ -43,9 +43,9 @@
       "Open Menu and choose Services, then navigate to About me.",
       "Confirm the new purple-background portrait is shown with its full composition.",
       "Read the introduction and follow the contact link.",
-      "Inspect the Pinterest, Facebook, Instagram, X, and TikTok icons; confirm every destination uses Phemxy7."
+      "Inspect the Pinterest, Facebook, Instagram, X, and TikTok icons; confirm each matches the exact social URL supplied by the owner, including the Pinterest and Facebook share links."
     ],
-    "expected": "The new portrait is visible, the text is more readable, navigation closes correctly, and the email and phone links remain available without horizontal overflow. All five social links use the Phemxy7 handle and open safely in a new tab."
+    "expected": "The new portrait is visible, the text is more readable, navigation closes correctly, and the email and phone links remain available without horizontal overflow. All five social links use the owner-supplied profile URLs and open safely in a new tab."
   },
   {
     "name": "Browse every view of a multi-image project",
