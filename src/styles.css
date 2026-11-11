@@ -577,6 +577,9 @@ dialog p {
   line-height: 1.7;
   font-size: 15px;
 }
+#project-description {
+  font-size: calc(15px + 2pt);
+}
 .close {
   display: block;
   margin-left: auto;

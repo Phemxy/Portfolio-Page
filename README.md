@@ -43,7 +43,7 @@ If the environment blocks the public AppDeploy image host, set `PORTFOLIO_RESOUR
 - `docs/portfolio-image-map.md`: the image-to-project mapping checked against the deployed artwork. Frame numbers are storage names, not attachment positions.
 - `public/resources/`: images extracted from the supplied portfolio PDF.
 - The logo, updated portrait (frame 1), and new work images (frames 2–25) are uploaded AppDeploy resources. The HTML and project data use their hosted URLs so they also appear when the repository is hosted elsewhere.
-- The logo is smaller and left-aligned. Explicit type sizes are increased by 1px, including responsive headings; the About image uses a top-centered three-quarter crop inside its 4:5 frame, keeping the face and upper trousers prominent.
+- The logo is smaller and left-aligned. Explicit type sizes are increased by 1px, including responsive headings; project descriptions have an additional 2pt increase; the About image uses a top-centered three-quarter crop inside its 4:5 frame, keeping the face and upper trousers prominent.
 - `tests/portfolio.spec.ts`: executable browser checks.
 - `tests/tests.json`: workflow descriptions prepared for AppDeploy validation.
 
