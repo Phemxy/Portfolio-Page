@@ -1,4 +1,19 @@
 import { expect, test } from '@playwright/test';
+import { join } from 'node:path';
+
+test.beforeEach(async ({ page }) => {
+  const resourceDirectory = process.env.PORTFOLIO_RESOURCE_DIR;
+  if (!resourceDirectory) return;
+  await page.route(
+    'https://phemxy-kreative-designer-nvp0aa.v2.appdeploy.ai/resources/frame-*',
+    async (route) => {
+      const filename = new URL(route.request().url()).pathname
+        .split('/')
+        .pop()!;
+      await route.fulfill({ path: join(resourceDirectory, filename) });
+    },
+  );
+});
 
 test('filter the expanded gallery and inspect a PDF branding project', async ({
   page,
@@ -11,6 +26,17 @@ test('filter the expanded gallery and inspect a PDF branding project', async ({
   await expect(page.locator('.project:visible').first()).toContainText(
     'Gellas Food',
   );
+  const plantain = page.locator('[data-project-id="gellas-plantain"]');
+  await plantain.click();
+  await expect(page.locator('#project-preview')).toHaveAttribute(
+    'src',
+    /frame-14\.jpg$/,
+  );
+  await expect(page.locator('#project-preview')).toHaveJSProperty(
+    'naturalWidth',
+    1150,
+  );
+  await page.keyboard.press('Escape');
   await page.getByRole('button', { name: 'Branding', exact: true }).click();
   await expect(page.locator('.project:visible')).toHaveCount(3);
   const project = page.locator('[data-project-id="blinders-cut"]');
@@ -112,18 +138,26 @@ test('multi-image projects support buttons, thumbnails, keyboard, and a safe exi
   const dialog = page.getByRole('dialog');
   await expect(dialog.locator('#project-preview')).toHaveAttribute(
     'src',
-    /frame-10\.jpg$/,
+    /frame-02\.jpg$/,
   );
   await dialog.getByRole('button', { name: 'Next project image' }).click();
   await expect(dialog.locator('#project-preview')).toHaveAttribute(
     'src',
-    /frame-11\.jpg$/,
+    /frame-03\.jpg$/,
+  );
+  await expect(dialog.locator('#project-preview')).toHaveJSProperty(
+    'naturalWidth',
+    1280,
   );
   await expect(dialog.getByRole('status')).toHaveText('2 / 3');
   await dialog.getByRole('button', { name: 'View image 3 of 3' }).click();
   await expect(dialog.locator('#project-preview')).toHaveAttribute(
     'src',
-    /frame-14\.jpg$/,
+    /frame-05\.jpg$/,
+  );
+  await expect(dialog.locator('#project-preview')).toHaveJSProperty(
+    'naturalWidth',
+    3000,
   );
   await page.keyboard.press('ArrowLeft');
   await expect(dialog.getByRole('status')).toHaveText('2 / 3');

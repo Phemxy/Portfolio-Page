@@ -32,15 +32,18 @@ npm test
 
 To use an existing Chromium installation, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its executable path when running the tests. The checks cover project filters and previews, keyboard dismissal and focus, mobile navigation, contact links, reduced motion, image loading, and layout overflow.
 
+If the environment blocks the public AppDeploy image host, set `PORTFOLIO_RESOURCE_DIR` to a local directory containing the actual deployed `frame-*.jpg` and `frame-01.png` files when running browser checks. The tests then use those same image bytes locally.
+
 ## Edit the portfolio
 
-- `index.html`: title, biography, services, project descriptions, and contact links.
+- `index.html`: title, biography, services, hero images, and contact links.
 - `src/styles.css`: responsive styles, colors, and motion.
 - `src/main.ts`: navigation, project filters, multi-image previews, and motion controls.
 - `src/projects.ts`: project descriptions, categories, and image groups.
+- `docs/portfolio-image-map.md`: the image-to-project mapping checked against the deployed artwork. Frame numbers are storage names, not attachment positions.
 - `public/resources/`: images extracted from the supplied portfolio PDF.
 - The logo, updated portrait (frame 1), and new work images (frames 2–25) are uploaded AppDeploy resources. The HTML and project data use their hosted URLs so they also appear when the repository is hosted elsewhere.
-- The logo is smaller and left-aligned. Explicit type sizes are increased by 1px, including responsive headings; the About portrait uses its full 4:5 composition.
+- The logo is smaller and left-aligned. Explicit type sizes are increased by 1px, including responsive headings; the About image uses a top-centered three-quarter crop inside its 4:5 frame, keeping the face and upper trousers prominent.
 - `tests/portfolio.spec.ts`: executable browser checks.
 - `tests/tests.json`: workflow descriptions prepared for AppDeploy validation.
 

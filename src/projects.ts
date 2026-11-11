@@ -20,127 +20,125 @@ export const projects: PortfolioProject[] = [
     title: 'Gellas Food — Plantain Chips',
     category: 'Packaging',
     description:
-      'Front and back pouch packaging for plantain chips, combining product imagery, brand identity, and clear information layout.',
-    images: [frame(2)],
+      'Plantain chip pouch design showing the front artwork and back product-information panel.',
+    images: [frame(14)],
   },
   {
     id: 'flores-afolabi',
     title: 'Flores & Afolabi — Gift Bag',
     category: 'Print & events',
     description:
-      'A wedding gift bag with coordinated floral details, a warm color palette, and personalised event typography.',
-    images: [frame(3)],
+      'Wedding gift-bag design with personalised names, event dates, floral artwork, and a ring motif.',
+    images: [frame(13)],
   },
   {
     id: 'jemilat-oluwafemi',
     title: 'Jemilat & Oluwafemi — Wedding Suite',
     category: 'Print & events',
     description:
-      'Coordinated wedding keepsakes, shown across a personalised notebook and event wristbands.',
-    images: [frame(4), frame(12)],
+      'Wedding keepsake designs for Jemilat and Oluwafemi, shown on a personalised notebook and access wristbands.',
+    images: [frame(15), frame(6)],
   },
   {
     id: 'asa-fufu',
     title: 'Àsà — Fufu Powder',
     category: 'Packaging',
     description:
-      'A complete front and back food packaging presentation with a bold yellow identity and organised product information.',
-    images: [frame(5), frame(9)],
+      'Front and back pouch artwork for Àsà Pure Cassava Fufu Powder.',
+    images: [frame(16), frame(18)],
   },
   {
     id: 'wedding-notebook',
     title: 'Wedding Keepsake Notebook',
     category: 'Print & events',
     description:
-      'A spiral-bound wedding keepsake combining photographs, soft color, and a thank-you message.',
-    images: [frame(6)],
+      'A photo-based wedding souvenir notebook with a thank-you cover design.',
+    images: [frame(17)],
   },
   {
     id: 'good-luck',
-    title: 'Emmy Formula — Good Luck',
+    title: 'Good Luck — Sachet Packaging',
     category: 'Packaging',
     description:
-      'Product label design with a distinctive green identity, prominent product naming, and a clear information hierarchy.',
-    images: [frame(7)],
+      'Sachet packaging artwork for Good Luck, using green botanical graphics and bold product lettering.',
+    images: [frame(20)],
   },
   {
     id: 'energie',
-    title: 'Emmy Formula — Énergie',
+    title: 'Énergie Sexuel — Sachet Packaging',
     category: 'Packaging',
     description:
-      'A product label presentation using a magenta and gold palette, bold typography, and botanical imagery.',
-    images: [frame(8)],
+      'Sachet packaging artwork for Énergie Sexuel, with a magenta, black, and gold layout.',
+    images: [frame(19)],
   },
   {
     id: 'blessing-moyosore',
-    title: 'Blessing & Moyosore — Event Collection',
+    title: 'Blessing & Moyosoreoluwa — Wedding Keepsakes',
     category: 'Print & events',
     description:
-      'A coordinated wedding identity applied to gold and white wristbands and branded cups. Explore all three views.',
-    images: [frame(10), frame(11), frame(14)],
+      'Gold and white wedding wristband designs and matching cup artwork for Blessing and Moyosoreoluwa.',
+    images: [frame(2), frame(3), frame(5)],
   },
   {
     id: 'sarry-wig',
     title: 'Sarry Wig — Branded T-Shirt',
     category: 'Merchandise',
     description:
-      'Promotional clothing with a vibrant pink and black composition, portrait imagery, and brand messaging.',
-    images: [frame(13)],
+      'Promotional T-shirt artwork for a wig brand, combining its logo, a portrait, and brand messaging.',
+    images: [frame(4)],
   },
   {
     id: 'solar-banner',
     title: 'Solar Energy — Roll-up Banner',
     category: 'Print & events',
     description:
-      'A large-format promotional banner balancing product photography, specifications, and contact information.',
-    images: [frame(15)],
+      'Roll-up banner design for a solar-energy business, displaying products, specifications, and contact information.',
+    images: [frame(7)],
   },
   {
     id: 'birthday-banner',
     title: 'Angel on Earth — Birthday Banner',
     category: 'Print & events',
     description:
-      'A portrait-led celebration banner with warm gold tones and expressive event typography.',
-    images: [frame(16)],
+      'Birthday roll-up banner featuring a portrait, the Angel on Earth heading, and a personalised birthday message.',
+    images: [frame(8)],
   },
   {
     id: 'udalice-pepper',
     title: 'Udalice — Wahala Hot Pepper',
     category: 'Packaging',
-    description:
-      'Front and back sachet packaging combining vivid ingredient imagery with brand and product information.',
-    images: [frame(17)],
+    description: 'Front and back sachet artwork for Udalice Wahala Hot Pepper.',
+    images: [frame(9)],
   },
   {
     id: 'memorial-notebook',
     title: 'Memorial Keepsake Notebook',
     category: 'Print & events',
     description:
-      'A commemorative notebook cover with a considered portrait layout, warm colors, and clear tribute typography.',
-    images: [frame(18)],
+      'Memorial notebook cover featuring a portrait, tribute text, and commemorative details.',
+    images: [frame(10)],
   },
   {
     id: 'westerham',
     title: 'Westerham — Branded T-Shirts',
     category: 'Merchandise',
     description:
-      'Brand applications for education and migration services, arranged for clarity and recognition on clothing.',
-    images: [frame(19)],
+      'Promotional T-shirt artwork for Westerham Education and Migration Limited.',
+    images: [frame(11)],
   },
   {
     id: 'super-farmer',
     title: 'Super Farmer — Garri',
     category: 'Packaging',
-    description:
-      'A coordinated front and back food pouch design with a green brand palette and prominent product naming.',
-    images: [frame(20)],
+    description: 'Front and back pouch artwork for Super Farmer white garri.',
+    images: [frame(12)],
   },
   {
     id: 'gellas-rosemary',
     title: 'Gellas Food — Dried Rosemary',
     category: 'Packaging',
     description:
-      'Herb sachet packaging with a fresh green visual identity, ingredient imagery, and an organised back panel.',
+      'Front and back sachet artwork for Gellas Food dried rosemary.',
     images: [frame(21)],
   },
   {
@@ -148,7 +146,7 @@ export const projects: PortfolioProject[] = [
     title: 'Joyful Gele — Gift Bag',
     category: 'Print & events',
     description:
-      'A branded shopping bag pairing a black and gold palette with product portraits and contact details.',
+      'Shopping-bag artwork for Joyful Gele, with brand imagery and contact details.',
     images: [frame(22)],
   },
   {
@@ -156,7 +154,7 @@ export const projects: PortfolioProject[] = [
     title: 'Snowbliss — Icing Sugar',
     category: 'Packaging',
     description:
-      'Food packaging with a blue and white identity, product-led imagery, and a clear visual hierarchy.',
+      'Pouch packaging artwork for Snowbliss icing sugar, using a blue and white layout and cupcake imagery.',
     images: [frame(23)],
   },
   {
@@ -164,7 +162,7 @@ export const projects: PortfolioProject[] = [
     title: 'Birthday Keepsake Pillow',
     category: 'Merchandise',
     description:
-      'A personalised textile print combining portrait photography, a celebratory message, and gold decorative details.',
+      'Birthday throw-pillow artwork with personalised portraits, a birthday message, and gold decorative elements.',
     images: [frame(24)],
   },
   {
@@ -172,7 +170,7 @@ export const projects: PortfolioProject[] = [
     title: 'Celebration of Life — Brochure',
     category: 'Print & events',
     description:
-      'An editorial spread that brings family photography and commemorative storytelling into a cohesive printed layout.',
+      'A commemorative brochure spread arranging family photographs and captions across facing pages.',
     images: [frame(25)],
   },
   {
@@ -188,7 +186,7 @@ export const projects: PortfolioProject[] = [
     title: 'Community & Farm Identity Collection',
     category: 'Branding',
     description:
-      'Logo designs for Lagos Golden Hearts Lions Club, Healthy Choice Farm, Adex Animal Farms, AfriPhoneReaders, and Akoto, presented in the second supplied branding slide.',
+      'A collection of logos for a Lions Club, farms, and reading platforms, presented in the supplied branding slide.',
     images: ['/resources/branding-slide-2.jpg'],
   },
   {
@@ -196,7 +194,7 @@ export const projects: PortfolioProject[] = [
     title: 'Blinders Cut — Brand Identity',
     category: 'Branding',
     description:
-      'A barbering identity shown through logo variations, a repeating brand pattern, and merchandise applications.',
+      'Blinders Cut brand artwork showing logo variations, a repeating pattern, and merchandise applications.',
     images: ['/resources/pdf-blinders-cut.jpg'],
   },
   {

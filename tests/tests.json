@@ -41,12 +41,12 @@
     "steps": [
       "Confirm the smaller Phemxy Concepts logo appears at the top left.",
       "Open Menu and choose Services, then navigate to About me.",
-      "Confirm the new purple-background portrait is shown with its full composition.",
+      "Confirm the purple-background portrait is framed as a three-quarter crop, keeping the face, hands, and upper trousers clearly visible.",
       "Confirm Figma is included in the skills and the education entry reads HND in Computer Engineering, Yaba College of Technology, Lagos, 2025.",
       "Read the introduction and follow the contact link.",
       "Inspect the Pinterest, Facebook, Instagram, X, and TikTok icons; confirm each matches the exact social URL supplied by the owner, including the Pinterest and Facebook share links."
     ],
-    "expected": "The new portrait is visible, the text is more readable, navigation closes correctly, and the email and phone links remain available without horizontal overflow. All five social links use the owner-supplied profile URLs and open safely in a new tab."
+    "expected": "The three-quarter portrait crop keeps the face and upper trousers visible, the text is more readable, navigation closes correctly, and the email and phone links remain available without horizontal overflow. All five social links use the owner-supplied profile URLs and open safely in a new tab."
   },
   {
     "name": "Browse every view of a multi-image project",
@@ -63,7 +63,7 @@
     "description": "Verify the gallery remains usable with reduced motion and project viewing can be cancelled.",
     "steps": [
       "Enable reduced motion and filter to Print & events.",
-      "Open Blessing & Moyosore \u2014 Event Collection.",
+      "Open Blessing & Moyosoreoluwa \u2014 Wedding Keepsakes.",
       "Use Next to reach image 2, select thumbnail 3, then use ArrowLeft and Previous.",
       "Close with Escape, reopen the project, and choose Discuss a similar project."
     ],
