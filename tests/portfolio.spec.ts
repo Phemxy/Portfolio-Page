@@ -115,7 +115,7 @@ test('mobile visitors can reach the updated portrait, services, and contact', as
     page.getByRole('link', { name: 'Say hello by email' }),
   ).toHaveAttribute('href', 'mailto:helfhelm7@gmail.com');
   await expect(
-    page.getByRole('link', { name: '+234 810 237 3011' }),
+    page.getByRole('link', { name: '+234 810 237 3011 ↗', exact: true }),
   ).toHaveAttribute('href', 'tel:+2348102373011');
   expect(
     await page.evaluate(
