@@ -928,3 +928,57 @@ dialog p {
   height: 23px;
   fill: currentColor;
 }
+
+.image-recovery {
+  padding: 26px;
+  margin-bottom: 20px;
+  border: 1px solid #ffffff30;
+  border-radius: 14px;
+  background: #ffffff08;
+  text-align: center;
+}
+.image-recovery[hidden],
+#project-preview[hidden],
+.project-notes[hidden] {
+  display: none;
+}
+.image-recovery button {
+  padding: 10px 18px;
+  border: 1px solid #ffffff50;
+  border-radius: 24px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.project-image:has(.image-unavailable)::before {
+  content: 'Open to retry image';
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.project-image .image-unavailable {
+  opacity: 0;
+}
+.project-notes {
+  margin: 24px 0;
+  padding-top: 20px;
+  border-top: 1px solid #ffffff25;
+}
+.project-notes dt {
+  margin-bottom: 7px;
+  color: var(--orange);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.project-notes dd {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: calc(15px + 2pt);
+  line-height: 1.7;
+}

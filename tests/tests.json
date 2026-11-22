@@ -10,13 +10,15 @@
       "both supplied branding slides",
       "project details",
       "keyboard dismissal",
-      "gallery reset"
+      "gallery reset",
+      "featured project design notes"
     ],
     "description": "Verify visitors can filter work and inspect a project.",
     "steps": [
       "Select Packaging and confirm only packaging projects remain.",
       "Select Branding and open Blinders Cut — Brand Identity.",
       "Inspect its full image and description, then press Escape.",
+      "Confirm the Blinders Cut details include Design focus and Shown in this project, with logo variations, a repeat pattern, and merchandise applications.",
       "Select All work."
     ],
     "expected": "The branding preview shows its PDF artwork; closing restores focus and All work restores all 25 projects."
@@ -81,14 +83,38 @@
       "rotating brand statement",
       "scroll reveals",
       "sticky header",
-      "portfolio artwork"
+      "portfolio artwork",
+      "all gallery artwork loading",
+      "portrait delivery",
+      "same artwork backup sources"
     ],
     "description": "Verify that the original motion plays automatically and the portfolio is navigable.",
     "steps": [
       "With the browser's reduced-motion setting off, open Home and confirm the two hero images appear and continue floating after the entrance.",
       "Scroll through the services strip and brand statement. Confirm that the strip moves, the headline cycles, and no Pause motion button is visible.",
-      "Open Plantain Chips and Fufu Powder and confirm the artwork fits the preview. Navigate to About and back to Home using the sticky header."
+      "Open Plantain Chips and Fufu Powder and confirm the artwork fits the preview. Navigate to About and back to Home using the sticky header.",
+      "Scroll through All work to load every project image, then inspect the header and footer logos and the About portrait. Confirm all artwork is visible and no broken-image placeholders remain."
     ],
     "expected": "Motion plays automatically, project previews open, and header navigation remains available."
+  },
+  {
+    "name": "Recover an unavailable project image and retry safely",
+    "viewport": "mobile",
+    "covers": [
+      "failed image recovery",
+      "same artwork backup",
+      "visible image failure state",
+      "manual retry",
+      "contact remains usable during image failure"
+    ],
+    "description": "Verify a failed artwork request can recover and a complete image outage gives visitors a useful retry.",
+    "steps": [
+      "In the browser test, temporarily block the site's primary /resources/frame-14.jpg request while allowing raw.githubusercontent.com, then open Gellas Food — Plantain Chips.",
+      "Confirm the preview still shows the same Gellas pouch using its GitHub copy and the project name and design notes remain correct.",
+      "Temporarily block both image sources for frame-14.jpg, close and reopen the project, and confirm a visible connection message with Retry image.",
+      "Restore the image requests, select Retry image, and confirm the artwork returns.",
+      "Choose Discuss a similar project and confirm the contact section remains reachable."
+    ],
+    "expected": "A failed primary request recovers with the matching artwork. A complete failure shows a retry message; restoring requests and retrying restores the image without losing the project or contact navigation."
   }
 ]

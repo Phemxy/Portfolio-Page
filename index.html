@@ -8,6 +8,37 @@
       content="Phemxy, Brand Specialist. Brand identities, logos, packaging and print design with personality and purpose."
     />
     <title>Phemxy — Kreative Designer</title>
+    <link rel="canonical" href="https://phemxy-kreative-designer-nvp0aa.v2.appdeploy.ai/" />
+    <meta name="theme-color" content="#100b14" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Phemxy Concepts" />
+    <meta property="og:title" content="Phemxy — Kreative Designer" />
+    <meta
+      property="og:description"
+      content="Brand identities, logos, packaging and print design with personality and purpose. Explore the work of Phemxy, Brand Specialist."
+    />
+    <meta property="og:url" content="https://phemxy-kreative-designer-nvp0aa.v2.appdeploy.ai/" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/Phemxy/Portfolio-Page/73ec55ac7daead845262bcf5bda8802f221235bb/public/resources/share-preview.png" />
+    <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/Phemxy/Portfolio-Page/73ec55ac7daead845262bcf5bda8802f221235bb/public/resources/share-preview.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="628" />
+    <meta
+      property="og:image:alt"
+      content="Phemxy Concepts — Good design. Unforgettable impressions. Branding, packaging and print."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@Phemxy7" />
+    <meta name="twitter:title" content="Phemxy — Kreative Designer" />
+    <meta
+      name="twitter:description"
+      content="Brand identities, logos, packaging and print design by Phemxy, Brand Specialist."
+    />
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/Phemxy/Portfolio-Page/73ec55ac7daead845262bcf5bda8802f221235bb/public/resources/share-preview.png" />
+    <meta
+      name="twitter:image:alt"
+      content="Phemxy Concepts — Good design. Unforgettable impressions."
+    />
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
@@ -15,7 +46,7 @@
     <header class="site-header">
       <a class="brand" href="#home" aria-label="Phemxy home">
         <img
-          src="https://phemxy-kreative-designer-nvp0aa.v2.appdeploy.ai/resources/phemxy-logo.png"
+          src="./resources/phemxy-logo.png"
           alt="Phemxy Concepts"
           width="343"
           height="111"
@@ -55,7 +86,7 @@
         >
           <figure class="showcase-card showcase-branding">
             <img
-              src="https://phemxy-kreative-designer-nvp0aa.v2.appdeploy.ai/resources/frame-14.jpg"
+              src="./resources/frame-14.jpg"
               alt="Gellas Food plantain chips packaging designed by Phemxy"
               width="1200"
               height="849"
@@ -66,7 +97,7 @@
           </figure>
           <figure class="showcase-card showcase-product">
             <img
-              src="https://phemxy-kreative-designer-nvp0aa.v2.appdeploy.ai/resources/frame-23.jpg"
+              src="./resources/frame-23.jpg"
               alt="Snowbliss icing sugar packaging designed by Phemxy"
               width="1200"
               height="849"
@@ -188,7 +219,7 @@
       <section id="about" class="section about">
         <div class="portrait" data-reveal="left">
           <img
-            src="https://phemxy-kreative-designer-nvp0aa.v2.appdeploy.ai/resources/frame-01.png"
+            src="https://raw.githubusercontent.com/Phemxy/Portfolio-Page/73ec55ac7daead845262bcf5bda8802f221235bb/public/resources/frame-01.jpg"
             alt="Phemxy seated in purple knitwear against a purple studio background"
             width="1122"
             height="1402"
@@ -340,7 +371,7 @@
     <footer>
       <a class="brand footer-brand" href="#home"
         ><img
-          src="https://phemxy-kreative-designer-nvp0aa.v2.appdeploy.ai/resources/phemxy-logo.png"
+          src="./resources/phemxy-logo.png"
           alt="Phemxy Concepts home"
           width="343"
           height="111"
@@ -351,6 +382,10 @@
     <dialog aria-labelledby="project-title">
       <button class="close" aria-label="Close project">Close ×</button
       ><img id="project-preview" alt="" />
+      <div class="image-recovery" id="image-recovery" role="alert" hidden>
+        <p>This image couldn’t load. Please check your connection and try again.</p>
+        <button type="button" id="retry-image">Retry image</button>
+      </div>
       <div class="project-gallery-controls" hidden>
         <button
           type="button"
@@ -371,6 +406,7 @@
       <div class="project-thumbnails" aria-label="Project image views"></div>
       <h2 id="project-title"></h2>
       <p id="project-description"></p>
+      <dl class="project-notes" id="project-notes" hidden></dl>
       <a class="button" href="#contact" id="project-contact"
         >Discuss a similar project ↗</a
       >

@@ -48,3 +48,24 @@ If the environment blocks the public AppDeploy image host, set `PORTFOLIO_RESOUR
 - `tests/tests.json`: workflow descriptions prepared for AppDeploy validation.
 
 The visible title is **Phemxy — Kreative Designer**. The biography describes Phemxy as a **brand specialist**, lists an HND in Computer Engineering from Yaba College of Technology, Lagos (2025), and includes Figma in the skills. The gallery includes the newly supplied artwork and branding slides. Contact details come from the original PDF, and the five social icons use the exact owner-supplied URLs for Pinterest, Facebook, Instagram, X, and TikTok, displayed as Phemxy7.
+
+## Image delivery and sharing
+
+The repository now keeps the 24 supplied work images, the original logo, and a
+lighter JPEG copy of the supplied portrait in `public/resources/`. The portrait
+retains its original 1122 × 1402 dimensions and uses the same CSS crop.
+AppDeploy retains the original uploaded PNG as a fallback for the portrait.
+
+`src/media.ts` recovers failed artwork requests using pinned copies in this
+repository. A project preview shows a connection message and Retry image control
+if both sources fail. No substitute artwork is used. The gallery's primary image
+paths follow the current site rather than a hard-coded AppDeploy hostname.
+
+The HTML includes a canonical URL, Open Graph and X card metadata referencing the
+real 1200 × 628 branded `share-preview.png`, plus a sitemap and robots file.
+Selected project views include artwork-based design notes; client briefs,
+outcomes, and testimonials should be added only when supplied by the owner.
+
+Validation for this update uses AppDeploy's Vite 8 build and its desktop/mobile
+QA because the attached workspace failed to start. The local Playwright suite
+includes a focused image-recovery test for the next available execution run.

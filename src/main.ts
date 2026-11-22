@@ -1,5 +1,6 @@
 import './styles.css';
 import { projects, type PortfolioProject } from './projects';
+import { installImageRecovery, setImageSource } from './media';
 
 const menu = document.querySelector<HTMLButtonElement>('.menu')!;
 const navigation = document.querySelector<HTMLElement>('#navigation')!;
@@ -26,12 +27,38 @@ const thumbnails = document.querySelector<HTMLElement>('.project-thumbnails')!;
 let opener: HTMLButtonElement | null = null;
 let selectedProject: PortfolioProject | null = null;
 let imageIndex = 0;
+const imageRecovery = document.querySelector<HTMLElement>('#image-recovery')!;
+const projectNotes = document.querySelector<HTMLElement>('#project-notes')!;
+
+installImageRecovery(
+  (image) => {
+    if (image === preview) {
+      preview.hidden = true;
+      imageRecovery.hidden = false;
+    }
+  },
+  (image) => {
+    if (image === preview) {
+      preview.hidden = false;
+      imageRecovery.hidden = true;
+    }
+  },
+);
+
+document.querySelector('#retry-image')!.addEventListener('click', () => {
+  if (!selectedProject) return;
+  const source = new URL(selectedProject.images[imageIndex], document.baseURI);
+  source.searchParams.set('retry', String(Date.now()));
+  imageRecovery.hidden = true;
+  setImageSource(preview, source.href);
+});
 
 function showProjectImage(index: number) {
   if (!selectedProject) return;
   imageIndex =
     (index + selectedProject.images.length) % selectedProject.images.length;
-  preview.src = selectedProject.images[imageIndex];
+  imageRecovery.hidden = true;
+  setImageSource(preview, selectedProject.images[imageIndex]);
   preview.alt = `${selectedProject.title}, view ${imageIndex + 1} of ${selectedProject.images.length}`;
   document.querySelector('#project-image-count')!.textContent =
     `${imageIndex + 1} / ${selectedProject.images.length}`;
@@ -46,6 +73,21 @@ function openProject(project: PortfolioProject, button: HTMLButtonElement) {
   document.querySelector('#project-title')!.textContent = project.title;
   document.querySelector('#project-description')!.textContent =
     project.description;
+  projectNotes.replaceChildren();
+  projectNotes.hidden = !project.details;
+  if (project.details) {
+    const rows = [
+      ['Design focus', project.details.focus],
+      ['Shown in this project', project.details.deliverables.join(' · ')],
+    ];
+    rows.forEach(([label, value]) => {
+      const term = document.createElement('dt');
+      const detail = document.createElement('dd');
+      term.textContent = label;
+      detail.textContent = value;
+      projectNotes.append(term, detail);
+    });
+  }
   imageControls.hidden = project.images.length < 2;
   thumbnails.replaceChildren();
   if (project.images.length > 1) {
@@ -57,7 +99,7 @@ function openProject(project: PortfolioProject, button: HTMLButtonElement) {
         `View image ${index + 1} of ${project.images.length}`,
       );
       const image = document.createElement('img');
-      image.src = source;
+      setImageSource(image, source);
       image.alt = '';
       thumbnail.append(image);
       thumbnail.addEventListener('click', () => showProjectImage(index));
@@ -82,7 +124,7 @@ const projectButtons = projects.map((project) => {
     <div class="project-label"><h3></h3><span></span></div>
   `;
   const image = button.querySelector('img')!;
-  image.src = project.images[0];
+  setImageSource(image, project.images[0]);
   image.alt = project.title;
   button.querySelector('h3')!.textContent = project.title;
   button.querySelector('.project-label > span')!.textContent = project.category;
@@ -166,6 +208,7 @@ function updateScrollAppearance() {
     '--scroll-shift',
     motionPreference.matches ? '0px' : `${Math.min(scrollY * 0.08, 55)}px`,
   );
+
 }
 
 function applyMotionPreference() {

@@ -7,10 +7,13 @@ export interface PortfolioProject {
   category: ProjectCategory;
   description: string;
   images: string[];
+  details?: {
+    focus: string;
+    deliverables: string[];
+  };
 }
 
-const uploadedResources =
-  'https://phemxy-kreative-designer-nvp0aa.v2.appdeploy.ai/resources';
+const uploadedResources = new URL('./resources', document.baseURI).href;
 const frame = (number: number) =>
   `${uploadedResources}/frame-${String(number).padStart(2, '0')}.jpg`;
 
@@ -22,6 +25,15 @@ export const projects: PortfolioProject[] = [
     description:
       'Plantain chip pouch design showing the front artwork and back product-information panel.',
     images: [frame(14)],
+    details: {
+      focus:
+        'A front-and-back pouch layout combining bold product lettering, plantain imagery, and a separate product-information panel.',
+      deliverables: [
+        'Front pouch artwork',
+        'Back information panel',
+        'Packaging mockup',
+      ],
+    },
   },
   {
     id: 'flores-afolabi',
@@ -46,6 +58,15 @@ export const projects: PortfolioProject[] = [
     description:
       'Front and back pouch artwork for Àsà Pure Cassava Fufu Powder.',
     images: [frame(16), frame(18)],
+    details: {
+      focus:
+        'A yellow pack with large product lettering and cassava imagery. The reverse groups preparation instructions and product information.',
+      deliverables: [
+        'Front pouch artwork',
+        'Back layout',
+        'Product mockups',
+      ],
+    },
   },
   {
     id: 'wedding-notebook',
@@ -179,7 +200,7 @@ export const projects: PortfolioProject[] = [
     category: 'Branding',
     description:
       'Logo work for food, events, automotive, technical, and healthcare businesses, selected from the original portfolio.',
-    images: ['/resources/branding-slide-1.jpg'],
+    images: ['https://raw.githubusercontent.com/Phemxy/Portfolio-Page/86e0b695f7d540fa51769b1af3eca03ee374181f/public/resources/branding-slide-1.jpg'],
   },
   {
     id: 'community-identities',
@@ -187,7 +208,7 @@ export const projects: PortfolioProject[] = [
     category: 'Branding',
     description:
       'A collection of logos for a Lions Club, farms, and reading platforms, presented in the supplied branding slide.',
-    images: ['/resources/branding-slide-2.jpg'],
+    images: ['https://raw.githubusercontent.com/Phemxy/Portfolio-Page/86e0b695f7d540fa51769b1af3eca03ee374181f/public/resources/branding-slide-2.jpg'],
   },
   {
     id: 'blinders-cut',
@@ -195,7 +216,16 @@ export const projects: PortfolioProject[] = [
     category: 'Branding',
     description:
       'Blinders Cut brand artwork showing logo variations, a repeating pattern, and merchandise applications.',
-    images: ['/resources/pdf-blinders-cut.jpg'],
+    images: ['https://raw.githubusercontent.com/Phemxy/Portfolio-Page/86e0b695f7d540fa51769b1af3eca03ee374181f/public/resources/pdf-blinders-cut.jpg'],
+    details: {
+      focus:
+        'A coordinated identity presented through logo variations, a repeat pattern, and branded merchandise applications.',
+      deliverables: [
+        'Logo variations',
+        'Repeat pattern',
+        'Merchandise applications',
+      ],
+    },
   },
   {
     id: 'event-flyers',
@@ -203,7 +233,7 @@ export const projects: PortfolioProject[] = [
     category: 'Print & events',
     description:
       'A selection of appreciation and event communication designs from the original portfolio.',
-    images: ['/resources/pdf-event-flyers.jpg'],
+    images: ['https://raw.githubusercontent.com/Phemxy/Portfolio-Page/86e0b695f7d540fa51769b1af3eca03ee374181f/public/resources/pdf-event-flyers.jpg'],
   },
   {
     id: 'wedding-programme',
@@ -211,6 +241,6 @@ export const projects: PortfolioProject[] = [
     category: 'Print & events',
     description:
       'A wedding programme using a coordinated navy and peach palette with personalised typography and a decorative monogram.',
-    images: ['/resources/pdf-wedding-programme.jpg'],
+    images: ['https://raw.githubusercontent.com/Phemxy/Portfolio-Page/86e0b695f7d540fa51769b1af3eca03ee374181f/public/resources/pdf-wedding-programme.jpg'],
   },
 ];

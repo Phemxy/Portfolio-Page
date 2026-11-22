@@ -80,7 +80,7 @@ test('mobile visitors can reach the updated portrait, services, and contact', as
   await expect(page.locator('#about')).toContainText('brand specialist');
   await expect(page.locator('#about img')).toHaveAttribute(
     'src',
-    /frame-01\.png$/,
+    /frame-01\.(png|jpg)$/,
   );
   await expect(page.locator('#about img')).toHaveAttribute(
     'alt',
@@ -248,4 +248,45 @@ test('the smaller logo aligns left and motion respects browser preferences', asy
   await page.keyboard.press('Escape');
   await expect(menu).toHaveAttribute('aria-expanded', 'false');
   await expect(menu).toBeFocused();
+});
+
+test('failed project images recover and can be retried without losing the project', async ({
+  page,
+  baseURL,
+}) => {
+  await page.setViewportSize({ width: 375, height: 667 });
+  const siteOrigin = new URL(baseURL!).origin;
+  let blockPrimary = true;
+  let blockBackup = false;
+  await page.route('**/resources/frame-14.jpg*', async (route) => {
+    const url = new URL(route.request().url());
+    if ((blockPrimary && url.origin === siteOrigin) ||
+        (blockBackup && url.hostname === 'raw.githubusercontent.com')) {
+      await route.abort('failed');
+      return;
+    }
+    await route.continue();
+  });
+  await page.goto('/');
+  const project = page.locator('[data-project-id="gellas-plantain"]');
+  await project.click();
+  const preview = page.locator('#project-preview');
+  await expect(preview).toHaveAttribute('src', /raw\.githubusercontent\.com/);
+  await expect.poll(() => preview.evaluate((image) => (image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+  await expect(page.locator('#project-notes')).toContainText('Front pouch artwork');
+
+  blockBackup = true;
+  await page.keyboard.press('Escape');
+  await project.click();
+  await expect(page.locator('#image-recovery')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Retry image', exact: true })).toBeVisible();
+  await expect(page.locator('#project-title')).toHaveText('Gellas Food — Plantain Chips');
+
+  blockPrimary = false;
+  blockBackup = false;
+  await page.getByRole('button', { name: 'Retry image', exact: true }).click();
+  await expect(page.locator('#image-recovery')).toBeHidden();
+  await expect.poll(() => preview.evaluate((image) => (image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+  await page.getByRole('link', { name: 'Discuss a similar project' }).click();
+  await expect(page).toHaveURL(/#contact$/);
 });
