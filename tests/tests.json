@@ -15,7 +15,7 @@
     "description": "Verify visitors can filter work and inspect a project.",
     "steps": [
       "Select Packaging and confirm only packaging projects remain.",
-      "Select Branding and open Blinders Cut \u2014 Brand Identity.",
+      "Select Branding and open Blinders Cut — Brand Identity.",
       "Inspect its full image and description, then press Escape.",
       "Select All work."
     ],
@@ -35,7 +35,8 @@
       "frame 1 portrait",
       "left aligned smaller logo",
       "larger typography",
-      "Phemxy7 social destinations"
+      "Phemxy7 social destinations",
+      "WhatsApp footer contact"
     ],
     "description": "Verify mobile visitors can reach the portfolio content and contact options.",
     "steps": [
@@ -44,9 +45,10 @@
       "Confirm the purple-background portrait is framed as a three-quarter crop, keeping the face, hands, and upper trousers clearly visible.",
       "Confirm Figma is included in the skills and the education entry reads HND in Computer Engineering, Yaba College of Technology, Lagos, 2025.",
       "Read the introduction and follow the contact link.",
-      "Inspect the Pinterest, Facebook, Instagram, X, and TikTok icons; confirm each matches the exact social URL supplied by the owner, including the Pinterest and Facebook share links."
+      "Inspect the Pinterest, Facebook, Instagram, X, and TikTok icons; confirm each matches the exact social URL supplied by the owner, including the Pinterest and Facebook share links.",
+      "Check that the WhatsApp icon is visible in Contact and links to https://wa.me/2348102373011. Do not send a message."
     ],
-    "expected": "The three-quarter portrait crop keeps the face and upper trousers visible, the text is more readable, navigation closes correctly, and the email and phone links remain available without horizontal overflow. All five social links use the owner-supplied profile URLs and open safely in a new tab."
+    "expected": "The three-quarter portrait crop keeps the face and upper trousers visible, the text is more readable, navigation closes correctly, and the email and phone links remain available without horizontal overflow. All five social links use the owner-supplied profile URLs and open safely in a new tab. The WhatsApp icon links to the chat for +234 810 237 3011."
   },
   {
     "name": "Browse every view of a multi-image project",
@@ -62,33 +64,31 @@
     ],
     "description": "Verify the gallery remains usable with reduced motion and project viewing can be cancelled.",
     "steps": [
-      "Enable reduced motion and filter to Print & events.",
-      "Open Blessing & Moyosoreoluwa \u2014 Wedding Keepsakes.",
+      "Enable reduced motion, verify the moving service strip and brand headline stay still, then filter to Print & events.",
+      "Open Blessing & Moyosoreoluwa — Wedding Keepsakes.",
       "Use Next to reach image 2, select thumbnail 3, then use ArrowLeft and Previous.",
       "Close with Escape, reopen the project, and choose Discuss a similar project."
     ],
     "expected": "The gallery cycles through the two wristband designs and cup mockup with the correct counter; Escape returns focus and the enquiry link reaches Contact without losing the scroll position."
   },
   {
-    "name": "Pause motion and keep layout usable",
+    "name": "Check restored portfolio motion",
     "viewport": "desktop",
     "covers": [
-      "motion pause and resume",
-      "staggered hero entrances",
+      "hero entrances",
+      "floating hero artwork",
+      "scrolling service strip",
+      "rotating brand statement",
       "scroll reveals",
       "sticky header",
-      "centered section alignment",
-      "uploaded portfolio image loading",
-      "complete artwork framing"
+      "portfolio artwork"
     ],
-    "description": "Verify moving elements can be paused and resumed without hiding content or blocking navigation.",
+    "description": "Verify that the original motion plays automatically and the portfolio is navigable.",
     "steps": [
-      "Confirm the hero content is centered and the two work images appear beneath its introduction.",
-      "Inspect the selected-work cards and open the Plantain Chips, Fufu Powder, and portrait images; confirm no image is broken and the full artwork fits its frame.",
-      "Scroll to the project area and click Pause motion.",
-      "Confirm the moving marquee and rotating service text stop; inspect the services and About content.",
-      "Click Play motion, then navigate back to Home."
+      "With the browser's reduced-motion setting off, open Home and confirm the two hero images appear and continue floating after the entrance.",
+      "Scroll through the services strip and brand statement. Confirm that the strip moves, the headline cycles, and no Pause motion button is visible.",
+      "Open Plantain Chips and Fufu Powder and confirm the artwork fits the preview. Navigate to About and back to Home using the sticky header."
     ],
-    "expected": "The motion resumes, all content remains readable and reachable, the header remains available, and the logo retains its proportions."
+    "expected": "Motion plays automatically, project previews open, and header navigation remains available."
   }
 ]

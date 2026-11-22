@@ -150,43 +150,31 @@ dialog.addEventListener('click', (event) => {
 dialog.addEventListener('close', () => opener?.focus({ preventScroll: true }));
 
 const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
-const motionToggle =
-  document.querySelector<HTMLButtonElement>('.motion-toggle')!;
 const root = document.documentElement;
 const header = document.querySelector<HTMLElement>('.site-header')!;
 const showcase = document.querySelector<HTMLElement>('.hero-showcase')!;
 const revealElements = Array.from(
   document.querySelectorAll<HTMLElement>('[data-reveal]'),
 );
-let pausedByVisitor = false;
 let revealObserver: IntersectionObserver | null = null;
 let scrollFrame = 0;
 
 function updateScrollAppearance() {
   scrollFrame = 0;
   header.classList.toggle('is-scrolled', scrollY > 12);
-  const reduced = motionPreference.matches || pausedByVisitor;
   showcase.style.setProperty(
     '--scroll-shift',
-    reduced ? '0px' : `${Math.min(scrollY * 0.08, 55)}px`,
+    motionPreference.matches ? '0px' : `${Math.min(scrollY * 0.08, 55)}px`,
   );
 }
 
 function applyMotionPreference() {
-  const reduced = motionPreference.matches;
-  const paused = reduced || pausedByVisitor;
-  root.classList.toggle('motion-ready', !paused);
-  root.classList.toggle('motion-paused', paused);
-  motionToggle.disabled = reduced;
-  motionToggle.setAttribute('aria-pressed', String(paused));
-  motionToggle.textContent = reduced
-    ? 'Reduced motion'
-    : paused
-      ? 'Play motion'
-      : 'Pause motion';
+  const canReveal =
+    !motionPreference.matches && 'IntersectionObserver' in window;
+  root.classList.toggle('motion-ready', canReveal);
   revealObserver?.disconnect();
 
-  if (paused || !('IntersectionObserver' in window)) {
+  if (!canReveal) {
     revealElements.forEach((element) => element.classList.add('is-visible'));
   } else {
     revealObserver = new IntersectionObserver(
@@ -202,14 +190,12 @@ function applyMotionPreference() {
     );
     revealElements.forEach((element) => revealObserver!.observe(element));
   }
-  updateScrollAppearance();
 }
 
-motionToggle.addEventListener('click', () => {
-  pausedByVisitor = !pausedByVisitor;
+motionPreference.addEventListener('change', () => {
+  updateScrollAppearance();
   applyMotionPreference();
 });
-motionPreference.addEventListener('change', applyMotionPreference);
 window.addEventListener(
   'scroll',
   () => {
@@ -226,4 +212,5 @@ document.addEventListener('keydown', (event) => {
     menu.focus();
   }
 });
+updateScrollAppearance();
 applyMotionPreference();

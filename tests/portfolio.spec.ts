@@ -91,7 +91,11 @@ test('mobile visitors can reach the updated portrait, services, and contact', as
     .click();
   await expect(page).toHaveURL(/#contact$/);
   const socialLinks = page.locator('#contact .social-links a');
-  await expect(socialLinks).toHaveCount(5);
+  await expect(socialLinks).toHaveCount(6);
+  const whatsApp = page.getByRole('link', {
+    name: 'Chat on WhatsApp at +234 810 237 3011',
+  });
+  await expect(whatsApp).toHaveAttribute('href', 'https://wa.me/2348102373011');
   const expectedProfiles = {
     Pinterest: 'https://pin.it/37pguH1BK',
     Facebook: 'https://www.facebook.com/share/1DbZWNgLWM/',
@@ -214,7 +218,7 @@ test('PDF artwork loads and the expanded layout stays within each viewport', asy
   expect(errors).toEqual([]);
 });
 
-test('the smaller logo aligns left and motion remains controllable', async ({
+test('the smaller logo aligns left and motion respects browser preferences', async ({
   page,
 }) => {
   await page.goto('/');
@@ -234,14 +238,9 @@ test('the smaller logo aligns left and motion remains controllable', async ({
       track.evaluate((element) => getComputedStyle(element).transform),
     )
     .not.toBe(initial);
-  await page.getByRole('button', { name: 'Pause motion', exact: true }).click();
-  await expect(track).toHaveCSS('animation-play-state', 'paused');
-  await page.getByRole('button', { name: 'Play motion', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Pause motion', exact: true })).toHaveCount(0);
   await expect(track).toHaveCSS('animation-play-state', 'running');
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(
-    page.getByRole('button', { name: 'Reduced motion', exact: true }),
-  ).toBeDisabled();
   await expect(track).toHaveCSS('animation-name', 'none');
   await page.setViewportSize({ width: 375, height: 667 });
   const menu = page.getByRole('button', { name: 'Menu +' });
