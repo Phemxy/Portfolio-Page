@@ -11,7 +11,9 @@
       "project details",
       "keyboard dismissal",
       "gallery reset",
-      "featured project design notes"
+      "featured project design notes",
+      "hero project previews",
+      "hero enquiry"
     ],
     "description": "Verify visitors can filter work and inspect a project.",
     "steps": [
@@ -19,7 +21,8 @@
       "Select Branding and open Blinders Cut — Brand Identity.",
       "Inspect its full image and description, then press Escape.",
       "Confirm the Blinders Cut details include Design focus and Shown in this project, with logo variations, a repeat pattern, and merchandise applications.",
-      "Select All work."
+      "Select All work.",
+      "Return Home, open the brand identity hero example, close it with Escape, then use Discuss your project to reach Contact."
     ],
     "expected": "The branding preview shows its PDF artwork; closing restores focus and All work restores all 25 projects."
   },
@@ -38,12 +41,16 @@
       "left aligned smaller logo",
       "larger typography",
       "Phemxy7 social destinations",
-      "WhatsApp footer contact"
+      "WhatsApp footer contact",
+      "visual service categories",
+      "service project previews",
+      "service enquiry links"
     ],
     "description": "Verify mobile visitors can reach the portfolio content and contact options.",
     "steps": [
       "Confirm the smaller Phemxy Concepts logo appears at the top left.",
       "Open Menu and choose Services, then navigate to About me.",
+      "Inspect the four visual services: Brand identity & logos, Packaging design, Print & branded merchandise, and Event branding & souvenirs. Open a View example preview, close it with Escape, and confirm focus returns to its service button.",
       "Confirm the purple-background portrait is framed as a three-quarter crop, keeping the face, hands, and upper trousers clearly visible.",
       "Confirm Figma is included in the skills and the education entry reads HND in Computer Engineering, Yaba College of Technology, Lagos, 2025.",
       "Read the introduction and follow the contact link.",
@@ -89,11 +96,13 @@
       "same artwork backup sources",
       "desktop testimonials",
       "three-card testimonial composition",
-      "manual testimonial controls"
+      "manual testimonial controls",
+      "three-category hero showcase",
+      "branding and print positioning"
     ],
     "description": "Verify that the original motion plays automatically and the portfolio is navigable.",
     "steps": [
-      "With the browser's reduced-motion setting off, open Home and confirm the two hero images appear and continue floating after the entrance.",
+      "With the browser's reduced-motion setting off, open Home and confirm the branding, packaging and event-print examples appear and float after the entrance.",
       "Scroll through the services strip and brand statement. Confirm that the strip moves, the headline cycles, and no Pause motion button is visible.",
       "Open Plantain Chips and Fufu Powder and confirm the artwork fits the preview. Navigate to About and back to Home using the sticky header.",
       "Scroll through All work to load every project image, then inspect the header and footer logos and the About portrait. Confirm all artwork is visible and no broken-image placeholders remain.",

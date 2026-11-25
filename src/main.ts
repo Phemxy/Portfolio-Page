@@ -142,6 +142,18 @@ const projectButtons = projects.map((project) => {
   return button;
 });
 
+document.querySelectorAll<HTMLButtonElement>('[data-project-preview]')
+  .forEach((button) => {
+    const project = projects.find((item) =>
+      item.id === button.dataset.projectPreview,
+    );
+    if (!project) {
+      button.disabled = true;
+      return;
+    }
+    button.addEventListener('click', () => openProject(project, button));
+  });
+
 const filters = Array.from(
   document.querySelectorAll<HTMLButtonElement>('[data-filter]'),
 );

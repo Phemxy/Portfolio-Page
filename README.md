@@ -95,3 +95,23 @@ motion. The GitHub workflow runs TypeScript checking, a production build, and th
 browser suite, and saves desktop/mobile testimonial screenshots in its
 portfolio-browser-results artifact. The prepared AppDeploy build script also
 adds TypeScript checking before Vite.
+
+## Hero and visual services
+
+The hero states the full offer: From brand identity to the final print.
+Its three artwork examples open the matching branding, packaging, and event-print
+project previews. Desktop retains floating cards; smaller screens use a native
+horizontal gallery with a visible browsing hint. Full artwork uses contain
+framing, and the reduced-motion setting remains supported.
+
+Services are grouped into Brand identity & logos, Packaging design,
+Print & branded merchandise, and Event branding & souvenirs. Each card uses
+Phemxy's supplied work, lists concrete deliverables, opens a matching project
+example, and provides an enquiry link. Project previews return keyboard focus
+to the button that opened them.
+
+The changes use the agreed initial direction from the existing-site audit.
+The attached reference video was not viewed because the execution workspace
+remained unavailable. Publication still depends on AppDeploy restoring deployment
+access. GitHub checks include desktop/mobile hero and services screenshots in
+the portfolio-browser-results artifact.
