@@ -69,3 +69,29 @@ outcomes, and testimonials should be added only when supplied by the owner.
 Validation for this update uses AppDeploy's Vite 8 build and its desktop/mobile
 QA because the attached workspace failed to start. The local Playwright suite
 includes a focused image-recovery test for the next available execution run.
+
+## Client testimonials
+
+The feature is saved in GitHub. Publishing it to AppDeploy is currently blocked
+because the account's Free deployment window has expired; Lite or Plus is
+required to publish the update.
+
+The Client voices section is placed between About and Contact. It displays the
+owner-supplied reviews from Abatox Global, Mr. John at OK Prints, and Mrs. Jemilat.
+The review wording is retained in `src/testimonial-data.ts`; client names, roles,
+service labels, and optional avatar URLs are edited there.
+
+`src/testimonials.ts` provides a three-card desktop composition with a prominent
+center review, one visible card on mobile, previous/next buttons, pagination,
+keyboard arrows/Home/End, and touch swipes. Reviews advance only when the visitor
+navigates. The layout reserves space for all mobile reviews to avoid a jump when
+changing cards, and honors the system reduced-motion preference. Initials are
+shown when a client photo is not supplied.
+
+Empty review lists stay hidden. One review has no navigation controls; two
+reviews are shown without duplicating an entry. `tests/testimonials.spec.ts`
+covers the supplied content, responsive navigation, focus, swipe, and reduced
+motion. The GitHub workflow runs TypeScript checking, a production build, and the
+browser suite, and saves desktop/mobile testimonial screenshots in its
+portfolio-browser-results artifact. The prepared AppDeploy build script also
+adds TypeScript checking before Vite.

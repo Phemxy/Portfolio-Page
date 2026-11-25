@@ -86,14 +86,18 @@
       "portfolio artwork",
       "all gallery artwork loading",
       "portrait delivery",
-      "same artwork backup sources"
+      "same artwork backup sources",
+      "desktop testimonials",
+      "three-card testimonial composition",
+      "manual testimonial controls"
     ],
     "description": "Verify that the original motion plays automatically and the portfolio is navigable.",
     "steps": [
       "With the browser's reduced-motion setting off, open Home and confirm the two hero images appear and continue floating after the entrance.",
       "Scroll through the services strip and brand statement. Confirm that the strip moves, the headline cycles, and no Pause motion button is visible.",
       "Open Plantain Chips and Fufu Powder and confirm the artwork fits the preview. Navigate to About and back to Home using the sticky header.",
-      "Scroll through All work to load every project image, then inspect the header and footer logos and the About portrait. Confirm all artwork is visible and no broken-image placeholders remain."
+      "Scroll through All work to load every project image, then inspect the header and footer logos and the About portrait. Confirm all artwork is visible and no broken-image placeholders remain.",
+      "Navigate to Testimonials at desktop width. Confirm the three owner-supplied reviews, a prominent center card with subtly tilted side cards, and use Next testimonial to change the active client and counter."
     ],
     "expected": "Motion plays automatically, project previews open, and header navigation remains available."
   },
@@ -116,5 +120,30 @@
       "Choose Discuss a similar project and confirm the contact section remains reachable."
     ],
     "expected": "A failed primary request recovers with the matching artwork. A complete failure shows a retry message; restoring requests and retrying restores the image without losing the project or contact navigation."
+  },
+  {
+    "name": "Browse the supplied client testimonials on mobile",
+    "viewport": "mobile",
+    "covers": [
+      "owner-supplied testimonials",
+      "one-card mobile testimonial layout",
+      "next and previous testimonial",
+      "testimonial pagination",
+      "keyboard testimonial navigation",
+      "swipe testimonial navigation",
+      "reduced-motion testimonials",
+      "testimonial-to-contact flow"
+    ],
+    "description": "Verify visitors can read the supplied reviews and navigate the responsive carousel without losing access to Contact.",
+    "steps": [
+      "Open the portfolio at 375px width and scroll from About to Testimonials.",
+      "Confirm one visible review card at a time, with the full quote and attribution. Confirm the three reviews are Abatox Global / Management Team, Mr. John / CEO of OK Prints, and Mrs. Jemilat / Wedding Souvenirs & Event Branding.",
+      "Use Next testimonial, then select Show testimonial 3. Confirm the active card, selected dot, and counter agree.",
+      "Focus the testimonial stage and press ArrowRight to wrap from the last review to the first. Swipe left across the card and confirm the next review appears.",
+      "Use Previous testimonial to return to the first review. Confirm vertical scrolling still works and the page has no horizontal overflow.",
+      "Enable the browser's reduced-motion setting. Confirm cards remain readable with animation disabled and the controls still work.",
+      "Continue to Contact and confirm the email and WhatsApp options remain available."
+    ],
+    "expected": "All three reviews match the supplied text and attribution. One card is visible on mobile, controls and swipe/keyboard navigation wrap correctly, and reduced motion and Contact remain usable."
   }
 ]

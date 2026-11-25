@@ -1,6 +1,9 @@
 import './styles.css';
 import { projects, type PortfolioProject } from './projects';
 import { installImageRecovery, setImageSource } from './media';
+import { initTestimonials } from './testimonials';
+
+initTestimonials();
 
 const menu = document.querySelector<HTMLButtonElement>('.menu')!;
 const navigation = document.querySelector<HTMLElement>('#navigation')!;
