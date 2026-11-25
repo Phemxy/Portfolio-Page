@@ -252,16 +252,13 @@ test('the smaller logo aligns left and motion respects browser preferences', asy
 
 test('failed project images recover and can be retried without losing the project', async ({
   page,
+  browser,
   baseURL,
 }) => {
   await page.setViewportSize({ width: 375, height: 667 });
   const siteOrigin = new URL(baseURL!).origin;
-  let blockPrimary = true;
-  let blockBackup = false;
   await page.route('**/resources/frame-14.jpg*', async (route) => {
-    const url = new URL(route.request().url());
-    if ((blockPrimary && url.origin === siteOrigin) ||
-        (blockBackup && url.hostname === 'raw.githubusercontent.com')) {
+    if (new URL(route.request().url()).origin === siteOrigin) {
       await route.abort('failed');
       return;
     }
@@ -272,21 +269,48 @@ test('failed project images recover and can be retried without losing the projec
   await project.click();
   const preview = page.locator('#project-preview');
   await expect(preview).toHaveAttribute('src', /raw\.githubusercontent\.com/);
-  await expect.poll(() => preview.evaluate((image) => (image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+  await expect.poll(() => preview.evaluate((image) =>
+    (image as HTMLImageElement).naturalWidth,
+  )).toBeGreaterThan(0);
   await expect(page.locator('#project-notes')).toContainText('Front pouch artwork');
 
-  blockBackup = true;
-  await page.keyboard.press('Escape');
-  await project.click();
-  await expect(page.locator('#image-recovery')).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Retry image', exact: true })).toBeVisible();
-  await expect(page.locator('#project-title')).toHaveText('Gellas Food — Plantain Chips');
+  // A new context has no decoded artwork cached from the successful recovery.
+  const outageContext = await browser.newContext({
+    baseURL,
+    viewport: { width: 375, height: 667 },
+  });
+  const outagePage = await outageContext.newPage();
+  let blockArtwork = true;
+  await outagePage.route('**/resources/frame-14.jpg*', async (route) => {
+    if (blockArtwork) {
+      await route.abort('failed');
+      return;
+    }
+    await route.continue();
+  });
+  try {
+    await outagePage.goto('/');
+    await outagePage.locator('[data-project-id="gellas-plantain"]').click();
+    await expect(outagePage.locator('#image-recovery')).toBeVisible();
+    await expect(outagePage.getByRole('button', {
+      name: 'Retry image', exact: true,
+    })).toBeVisible();
+    await expect(outagePage.locator('#project-title'))
+      .toHaveText('Gellas Food — Plantain Chips');
 
-  blockPrimary = false;
-  blockBackup = false;
-  await page.getByRole('button', { name: 'Retry image', exact: true }).click();
-  await expect(page.locator('#image-recovery')).toBeHidden();
-  await expect.poll(() => preview.evaluate((image) => (image as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
-  await page.getByRole('link', { name: 'Discuss a similar project' }).click();
-  await expect(page).toHaveURL(/#contact$/);
+    blockArtwork = false;
+    await outagePage.getByRole('button', {
+      name: 'Retry image', exact: true,
+    }).click();
+    await expect(outagePage.locator('#image-recovery')).toBeHidden();
+    await expect.poll(() => outagePage.locator('#project-preview').evaluate(
+      (image) => (image as HTMLImageElement).naturalWidth,
+    )).toBeGreaterThan(0);
+    await outagePage.getByRole('link', {
+      name: 'Discuss a similar project',
+    }).click();
+    await expect(outagePage).toHaveURL(/#contact$/);
+  } finally {
+    await outageContext.close();
+  }
 });
