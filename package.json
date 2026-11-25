@@ -8,8 +8,8 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "playwright test",
-    "deploy:cloudflare": "npm run build && npx --yes cf@1.0.0-rc.4 deploy ./dist",
-    "check:cloudflare": "npm run build && npx --yes cf@1.0.0-rc.4 deploy ./dist --dry-run"
+    "deploy:worker-backup": "npm run build && npx --yes cf@1.0.0-rc.4 deploy ./dist",
+    "check:worker-backup": "npm run build && npx --yes cf@1.0.0-rc.4 deploy ./dist --dry-run"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.0",

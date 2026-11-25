@@ -20,7 +20,7 @@ npm run build
 npm run preview
 ```
 
-The production site is generated in `dist/`. Its relative asset paths support hosting at a domain root or a repository subdirectory. Cloudflare Workers serves the generated files. The production URL is https://portfolio-page.helfhelm7.workers.dev/.
+The production site is generated in `dist/`. Its relative asset paths support hosting at a domain root or a repository subdirectory. Cloudflare Pages serves the generated files. The production URL is https://phemxyconcepts.pages.dev/.
 
 ## Browser checks
 
@@ -112,27 +112,31 @@ to the button that opened them.
 
 The changes use the agreed initial direction from the existing-site audit.
 The attached reference video was not viewed because the execution workspace
-remained unavailable. The latest source is deployed through the Cloudflare GitHub connection. GitHub checks include desktop/mobile hero and services screenshots in
+remained unavailable. The latest source is deployed through the Cloudflare Pages GitHub connection. GitHub checks include desktop/mobile hero and services screenshots in
 the portfolio-browser-results artifact.
 
-## Cloudflare hosting
+## Cloudflare Pages hosting
 
-Production: https://portfolio-page.helfhelm7.workers.dev/
+Production: https://phemxyconcepts.pages.dev/
 
-The existing `portfolio-page` Worker is connected to this repository's `main`
-branch using Cloudflare Workers Builds. The build command is `npm run build`;
-the production deploy command is `npx --yes cf@1.0.0-rc.4 deploy ./dist`.
-Branch previews use `npx --yes cf@1.0.0-rc.4 previews deploy ./dist`.
+The `phemxyconcepts` Pages project is connected to
+`Phemxy/Portfolio-Page`. Pushes to `main` automatically build and publish
+production; other branches get preview deployments. The build command is
+`npm run build`, the output directory is `dist`, and the root directory is
+`/`. Both environments use build image v3 and Node.js 24. Pull-request comments
+are disabled. Cloudflare stores its GitHub authorization; there are no token
+values in this repository.
 
-`cloudflare.config.ts` declares the Worker name, public workers.dev route,
-static-file routing, and log/trace settings. The deploy command uploads the
-existing Vite output instead of running automatic framework configuration.
-The compatibility date is 2026-11-25. Missing assets return 404 responses.
+`public/404.html` provides a real not-found page and disables Pages' implicit
+SPA fallback. Navigation within the portfolio uses hash links. Canonical,
+Open Graph, social image, robots.txt, and sitemap URLs point to the Pages site.
 
-Run `npm run check:cloudflare` to build and validate without uploading.
-For manual deployment, use `npm run deploy:cloudflare` after authenticating
-with `cf auth login` or setting `CLOUDFLARE_API_TOKEN` and
-`CLOUDFLARE_ACCOUNT_ID` locally. Cloudflare stores the existing build token;
-no token value belongs in this repository. GitHub Actions checks the build,
-Cloudflare dry run, and browser tests. Future pushes to main deploy through
-Cloudflare's GitHub connection.
+The earlier Worker at https://portfolio-page.helfhelm7.workers.dev/ remains available as a
+backup. `cloudflare.config.ts` and the `deploy:worker-backup` /
+`check:worker-backup` scripts apply only to that Worker. Its deploy command
+uses the pinned cf CLI to upload Vite's existing `dist/` output. Pages deploys
+through its Git integration and does not need a separate CLI deployment step.
+
+GitHub Actions type-checks and builds the site, validates the optional Worker
+backup configuration, runs browser tests, and uploads desktop/mobile screenshots.
+To retry a Pages build, use the project's Deployments page in Cloudflare.
