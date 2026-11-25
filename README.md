@@ -1,6 +1,6 @@
 # Phemxy — Kreative Designer
 
-Responsive portfolio for Phemxy, a brand specialist behind Phemxy Concepts. The site includes selected branding and product work, services, an introduction, and email and telephone contact links. The gallery groups 24 newly supplied work images into 20 projects and adds three selections from the original PDF plus both slides from the additional branding PDF. Related packaging views and event items can be browsed inside a project using buttons, thumbnails, or arrow keys. Its magenta, plum, orange, and white palette comes from the supplied portfolio PDF. The centered hero, staggered entrances, floating work cards, rotating service text, and continuous marquee follow the requested Upscayl direction. Visitors can pause motion, and system reduced-motion changes take effect immediately.
+Responsive portfolio for Phemxy, a brand specialist behind Phemxy Concepts. The site includes selected branding and product work, services, an introduction, and email and telephone contact links. The gallery groups 24 newly supplied work images into 20 projects and adds three selections from the original PDF plus both slides from the additional branding PDF. Related packaging views and event items can be browsed inside a project using buttons, thumbnails, or arrow keys. Its magenta, plum, orange, and white palette comes from the supplied portfolio PDF. The centered hero, staggered entrances, floating work cards, rotating service text, and continuous marquee follow the requested Upscayl direction. System reduced-motion preferences are respected.
 
 ## Run locally
 
@@ -20,7 +20,7 @@ npm run build
 npm run preview
 ```
 
-The production site is generated in `dist/`. Its relative asset paths support hosting at a domain root or a repository subdirectory. The repository does not configure or publish a hosting service.
+The production site is generated in `dist/`. Its relative asset paths support hosting at a domain root or a repository subdirectory. Cloudflare Workers serves the generated files. The production URL is https://portfolio-page.helfhelm7.workers.dev/.
 
 ## Browser checks
 
@@ -42,7 +42,7 @@ If the environment blocks the public AppDeploy image host, set `PORTFOLIO_RESOUR
 - `src/projects.ts`: project descriptions, categories, and image groups.
 - `docs/portfolio-image-map.md`: the image-to-project mapping checked against the deployed artwork. Frame numbers are storage names, not attachment positions.
 - `public/resources/`: images extracted from the supplied portfolio PDF.
-- The logo, updated portrait (frame 1), and new work images (frames 2–25) are uploaded AppDeploy resources. The HTML and project data use their hosted URLs so they also appear when the repository is hosted elsewhere.
+- The logo, portrait, and work images are retained in public/resources and deployed with the site. Pinned GitHub copies remain available for image recovery.
 - The logo is smaller and left-aligned. Explicit type sizes are increased by 1px, including responsive headings; project descriptions have an additional 2pt increase; the About image uses a top-centered three-quarter crop inside its 4:5 frame, keeping the face and upper trousers prominent.
 - `tests/portfolio.spec.ts`: executable browser checks.
 - `tests/tests.json`: workflow descriptions prepared for AppDeploy validation.
@@ -112,6 +112,27 @@ to the button that opened them.
 
 The changes use the agreed initial direction from the existing-site audit.
 The attached reference video was not viewed because the execution workspace
-remained unavailable. Publication still depends on AppDeploy restoring deployment
-access. GitHub checks include desktop/mobile hero and services screenshots in
+remained unavailable. The latest source is deployed through the Cloudflare GitHub connection. GitHub checks include desktop/mobile hero and services screenshots in
 the portfolio-browser-results artifact.
+
+## Cloudflare hosting
+
+Production: https://portfolio-page.helfhelm7.workers.dev/
+
+The existing `portfolio-page` Worker is connected to this repository's `main`
+branch using Cloudflare Workers Builds. The build command is `npm run build`;
+the production deploy command is `npx --yes cf@1.0.0-rc.4 deploy ./dist`.
+Branch previews use `npx --yes cf@1.0.0-rc.4 previews deploy ./dist`.
+
+`cloudflare.config.ts` declares the Worker name, public workers.dev route,
+static-file routing, and log/trace settings. The deploy command uploads the
+existing Vite output instead of running automatic framework configuration.
+The compatibility date is 2026-11-25. Missing assets return 404 responses.
+
+Run `npm run check:cloudflare` to build and validate without uploading.
+For manual deployment, use `npm run deploy:cloudflare` after authenticating
+with `cf auth login` or setting `CLOUDFLARE_API_TOKEN` and
+`CLOUDFLARE_ACCOUNT_ID` locally. Cloudflare stores the existing build token;
+no token value belongs in this repository. GitHub Actions checks the build,
+Cloudflare dry run, and browser tests. Future pushes to main deploy through
+Cloudflare's GitHub connection.

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://phemxy-kreative-designer-nvp0aa.v2.appdeploy.ai/sitemap.xml
+Sitemap: https://portfolio-page.helfhelm7.workers.dev/sitemap.xml
