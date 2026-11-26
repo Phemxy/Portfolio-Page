@@ -72,9 +72,7 @@ includes a focused image-recovery test for the next available execution run.
 
 ## Client testimonials
 
-The feature is saved in GitHub. Publishing it to AppDeploy is currently blocked
-because the account's Free deployment window has expired; Lite or Plus is
-required to publish the update.
+The feature is published on the Cloudflare Pages site.
 
 The Client voices section is placed between About and Contact. It displays the
 owner-supplied reviews from Abatox Global, Mr. John at OK Prints, and Mrs. Jemilat.
@@ -82,10 +80,11 @@ The review wording is retained in `src/testimonial-data.ts`; client names, roles
 service labels, and optional avatar URLs are edited there.
 
 `src/testimonials.ts` provides a three-card desktop composition with a prominent
-center review, one visible card on mobile, previous/next buttons, pagination,
+center review, one visible card through 1100px (phones and tablets), previous/next buttons, pagination,
 keyboard arrows/Home/End, and touch swipes. Reviews advance only when the visitor
-navigates. The layout reserves space for all mobile reviews to avoid a jump when
-changing cards, and honors the system reduced-motion preference. Initials are
+navigates. The layout uses the widest available compact card, fluid quote typography,
+equal-height desktop cards, and a shared grid cell for the compact reviews.
+It reserves space for the longest review to avoid a jump when changing cards, and honors the system reduced-motion preference. Initials are
 shown when a client photo is not supplied.
 
 Empty review lists stay hidden. One review has no navigation controls; two
@@ -93,10 +92,11 @@ reviews are shown without duplicating an entry. `tests/testimonials.spec.ts`
 covers the supplied content, responsive navigation, focus, swipe, and reduced
 motion. The GitHub workflow runs TypeScript checking, a production build, and the
 browser suite, and saves desktop/mobile testimonial screenshots in its
-portfolio-browser-results artifact. The prepared AppDeploy build script also
-adds TypeScript checking before Vite.
+portfolio-browser-results artifact. Breakpoint regression checks cover readable card/quote widths, unclipped
+content, stable carousel height, non-overlapping desktop cards, and touch targets
+from 320px through 1440px.
 
-## Hero and visual services
+## Hero and services
 
 The hero states the full offer: From brand identity to the final print.
 Its three artwork examples open the matching branding, packaging, and event-print
@@ -104,11 +104,12 @@ project previews. Desktop retains floating cards; smaller screens use a native
 horizontal gallery with a visible browsing hint. Full artwork uses contain
 framing, and the reduced-motion setting remains supported.
 
-Services are grouped into Brand identity & logos, Packaging design,
-Print & branded merchandise, and Event branding & souvenirs. Each card uses
-Phemxy's supplied work, lists concrete deliverables, opens a matching project
-example, and provides an enquiry link. Project previews return keyboard focus
-to the button that opened them.
+Services follow the supplied reference: a centered heading and four numbered,
+text-only entries separated by fine rules. Full branding, Logo design,
+Print & packaging, and Promotional design form two columns on desktop and
+one column on phones. Each includes its description and a plain deliverables
+line. Project examples remain accessible from the hero and selected-work gallery.
+Service descriptions retain the enlarged text size.
 
 The changes use the agreed initial direction from the existing-site audit.
 The attached reference video was not viewed because the execution workspace

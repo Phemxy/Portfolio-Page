@@ -42,15 +42,16 @@
       "larger typography",
       "Phemxy7 social destinations",
       "WhatsApp footer contact",
-      "visual service categories",
-      "service project previews",
-      "service enquiry links"
+      "text services layout",
+      "four service descriptions",
+      "two-column services on desktop",
+      "single-column services on mobile"
     ],
     "description": "Verify mobile visitors can reach the portfolio content and contact options.",
     "steps": [
       "Confirm the smaller Phemxy Concepts logo appears at the top left.",
       "Open Menu and choose Services, then navigate to About me.",
-      "Inspect the four visual services: Brand identity & logos, Packaging design, Print & branded merchandise, and Event branding & souvenirs. Open a View example preview, close it with Escape, and confirm focus returns to its service button.",
+      "Inspect Full branding, Logo design, Print & packaging, and Promotional design. Confirm their numbered text layout stacks into one column on a phone.",
       "Confirm the purple-background portrait is framed as a three-quarter crop, keeping the face, hands, and upper trousers clearly visible.",
       "Confirm Figma is included in the skills and the education entry reads HND in Computer Engineering, Yaba College of Technology, Lagos, 2025.",
       "Read the introduction and follow the contact link.",
@@ -141,7 +142,10 @@
       "keyboard testimonial navigation",
       "swipe testimonial navigation",
       "reduced-motion testimonials",
-      "testimonial-to-contact flow"
+      "testimonial-to-contact flow",
+      "one-card tablet testimonial layout",
+      "readable quote width",
+      "stable review height across breakpoints"
     ],
     "description": "Verify visitors can read the supplied reviews and navigate the responsive carousel without losing access to Contact.",
     "steps": [
@@ -151,6 +155,7 @@
       "Focus the testimonial stage and press ArrowRight to wrap from the last review to the first. Swipe left across the card and confirm the next review appears.",
       "Use Previous testimonial to return to the first review. Confirm vertical scrolling still works and the page has no horizontal overflow.",
       "Enable the browser's reduced-motion setting. Confirm cards remain readable with animation disabled and the controls still work.",
+      "At tablet widths from 701px through 1100px, confirm one wide, readable review card. Above 1100px, confirm three desktop cards with no overlapping text or clipped content.",
       "Continue to Contact and confirm the email and WhatsApp options remain available."
     ],
     "expected": "All three reviews match the supplied text and attribution. One card is visible on mobile, controls and swipe/keyboard navigation wrap correctly, and reduced motion and Contact remain usable."

@@ -68,3 +68,66 @@ test('client reviews support responsive, keyboard, and touch navigation', async 
     name: 'Chat on WhatsApp at +234 810 237 3011',
   })).toHaveAttribute('href', 'https://wa.me/2348102373011');
 });
+
+test('testimonials stay readable through tablet widths and desktop transitions', async ({ page }) => {
+  test.setTimeout(60000);
+  await page.goto('/#testimonials');
+  const section = page.locator('#testimonials');
+  const stage = section.locator('.testimonial-stage');
+  const count = section.locator('.testimonial-count');
+  const next = section.getByRole('button', { name: 'Next testimonial' });
+  for (const width of [320, 375, 600, 700, 768, 900, 1024, 1100, 1101, 1280, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    const compact = width <= 1100;
+    await expect(section.locator('.testimonial-cards'))
+      .toHaveAttribute('data-compact', String(compact));
+    const visible = section.locator('.testimonial-slot:visible');
+    await expect(visible).toHaveCount(compact ? 1 : 3);
+    const boxes = await visible.locator('.testimonial-card').evaluateAll((cards) =>
+      cards.map((card) => {
+        const rect = card.getBoundingClientRect();
+        const quote = card.querySelector('blockquote')!;
+        return {
+          left: rect.left, right: rect.right, width: rect.width,
+          quoteWidth: quote.clientWidth,
+          contentFits: card.scrollHeight <= card.clientHeight + 1 &&
+            quote.scrollWidth <= quote.clientWidth,
+        };
+      }),
+    );
+    for (const box of boxes) {
+      expect(box.left, `Card clipped on left at ${width}px`).toBeGreaterThanOrEqual(0);
+      expect(box.right, `Card clipped on right at ${width}px`).toBeLessThanOrEqual(width);
+      expect(box.contentFits, `Quote clipped at ${width}px`).toBe(true);
+    }
+    if (compact) {
+      expect(boxes[0].width, `Narrow card at ${width}px`)
+        .toBeGreaterThanOrEqual(Math.min(560, width * 0.75));
+      expect(boxes[0].quoteWidth, `Narrow quote at ${width}px`)
+        .toBeGreaterThanOrEqual(Math.min(420, width * 0.55));
+      const initialHeight = await stage.evaluate((element) => element.clientHeight);
+      for (let review = 0; review < 3; review++) {
+        await next.click();
+        const height = await stage.evaluate((element) => element.clientHeight);
+        expect(Math.abs(height - initialHeight), `Layout jump at ${width}px`)
+          .toBeLessThanOrEqual(1);
+      }
+      await expect(count).toHaveText('01 / 03');
+    } else {
+      expect(boxes[0].right, `Cards overlap at ${width}px`).toBeLessThanOrEqual(boxes[1].left + 1);
+      expect(boxes[1].right, `Cards overlap at ${width}px`).toBeLessThanOrEqual(boxes[2].left + 1);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+      `Page overflow at ${width}px`).toBe(true);
+    for (const control of await section.locator('.testimonial-controls button').all()) {
+      const size = await control.boundingBox();
+      expect(size?.width).toBeGreaterThanOrEqual(44);
+      expect(size?.height).toBeGreaterThanOrEqual(44);
+    }
+    if (width === 768) {
+      await section.screenshot({
+        path: 'test-results/testimonials-tablet.png', animations: 'disabled',
+      });
+    }
+  }
+});

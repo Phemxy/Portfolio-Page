@@ -98,7 +98,8 @@ export function initTestimonials() {
   const pagination = section.querySelector<HTMLElement>('.testimonial-pagination')!;
   const count = section.querySelector<HTMLElement>('.testimonial-count')!;
   const announcement = section.querySelector<HTMLElement>('.testimonial-announcement')!;
-  const compact = matchMedia('(max-width: 700px)');
+  // Keep this breakpoint in sync with the testimonial styles.
+  const compact = matchMedia('(max-width: 1100px)');
   let active = 0;
 
   controls.hidden = reviews.length < 2;
