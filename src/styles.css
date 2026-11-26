@@ -67,7 +67,7 @@ a:focus-visible {
 }
 .brand img {
   display: block;
-  width: 185px;
+  width: 170px;
   height: auto;
   object-fit: contain;
 }
@@ -234,6 +234,7 @@ em {
 }
 .showcase-card:hover,
 .showcase-card:focus-within {
+  z-index: 3;
   animation-play-state: paused;
 }
 .showcase-branding {
@@ -311,9 +312,6 @@ em {
   box-shadow: 0 0 80px #d630ca18, inset 0 0 80px #d630ca14;
   transform: translate(-50%, calc(-50% + var(--scroll-shift, 0px))) rotateX(67deg);
   pointer-events: none;
-}
-.hero-swipe-hint {
-  display: none;
 }
 .hero-bottom {
   display: flex;
@@ -740,8 +738,8 @@ dialog p {
     gap: 18px;
     padding: 12px 6%;
   }
-  .brand img {
-    width: 145px;
+  .site-header .brand img {
+    width: 132px;
   }
   .menu {
     display: block;
@@ -785,43 +783,45 @@ dialog p {
   }
   .hero-showcase {
     display: flex;
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: 16px;
-    overflow-x: auto;
-    margin-top: 38px;
-    padding: 20px 8px 30px;
-    scroll-snap-type: x proximity;
-    scroll-padding-inline: 8px;
-    overscroll-behavior-x: contain;
-    scroll-behavior: smooth;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    overflow: visible;
+    margin-top: 45px;
+    padding: 18px 4px;
   }
   .showcase-ring {
-    display: none;
-  }
-  .hero-swipe-hint {
     display: block;
-    margin: 0 auto 24px;
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.6;
+    width: 78%;
   }
   .showcase-card {
-    flex: 0 0 min(84%, 360px);
-    width: min(84%, 360px);
+    flex: 0 0 36%;
+    width: 36%;
     margin: 0;
-    border-radius: 14px;
-    animation: none;
-    transform: none;
-    scroll-snap-align: center;
+    border-radius: 10px;
+  }
+  .showcase-branding {
+    --tilt: -6deg;
+  }
+  .showcase-product {
+    --tilt: 1deg;
+    margin-left: -4%;
+    margin-top: 28px;
+  }
+  .showcase-print {
+    --tilt: 6deg;
+    margin-left: -4%;
+    margin-top: 8px;
   }
   .showcase-card figcaption {
-    padding: 12px;
-    font-size: 13px;
+    display: block;
+    padding: 11px;
+    font-size: 11px;
   }
   .showcase-card figcaption span {
-    margin: 0;
-    font-size: 9px;
+    display: block;
+    margin-top: 5px;
+    font-size: 8px;
   }
   .hero-bottom {
     flex-direction: column;
@@ -1359,8 +1359,3 @@ dialog p {
   .testimonial-dot::after { transition: none; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-showcase {
-    scroll-behavior: auto;
-  }
-}

@@ -52,7 +52,7 @@ test('hero previews and restored services remain accessible', async ({
     .toHaveAttribute('href', 'mailto:helfhelm7@gmail.com');
 });
 
-test('mobile hero scrolls internally and text services stack inside the viewport', async ({
+test('mobile hero artwork stays visible and text services stack inside the viewport', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 375, height: 667 });
@@ -60,8 +60,13 @@ test('mobile hero scrolls internally and text services stack inside the viewport
   await page.goto('/');
   const showcase = page.locator('.hero-showcase');
   expect(await showcase.evaluate((element) =>
-    element.scrollWidth > element.clientWidth,
-  )).toBe(true);
+    getComputedStyle(element).overflowX,
+  )).not.toBe('auto');
+  for (const preview of await showcase.locator('.showcase-preview').all()) {
+    const box = await preview.boundingBox();
+    expect(box!.x).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(375);
+  }
   const eventExample = showcase.getByRole('button', {
     name: 'Open event print project',
   });
@@ -71,7 +76,6 @@ test('mobile hero scrolls internally and text services stack inside the viewport
     .toHaveText('Jemilat & Oluwafemi — Wedding Suite');
   await page.keyboard.press('Escape');
   await expect(eventExample).toBeFocused();
-  await showcase.evaluate((element) => { element.scrollLeft = 0; });
   await page.locator('.hero').screenshot({
     path: 'test-results/hero-mobile.png', animations: 'disabled',
   });

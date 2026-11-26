@@ -18,7 +18,9 @@ function fallbackSource(source: string): string | null {
   const url = new URL(source, document.baseURI);
   const filename = url.pathname.split('/').pop()!;
   let fallback: string | null = null;
-  if (filename === 'frame-01.jpg') {
+  if (filename === 'phemxy-logo-clean.png') {
+    fallback = 'https://raw.githubusercontent.com/Phemxy/Portfolio-Page/3a16e68b70ff95a0597f5b4071fa4e5883359fc9/public/resources/phemxy-logo-clean.png';
+  } else if (filename === 'frame-01.jpg') {
     fallback = new URL('./resources/frame-01.png', document.baseURI).href;
   } else if (filename === 'frame-01.png') {
     fallback = `${backupRoot}frame-01.jpg`;

@@ -43,7 +43,7 @@ If the environment blocks the public AppDeploy image host, set `PORTFOLIO_RESOUR
 - `docs/portfolio-image-map.md`: the image-to-project mapping checked against the deployed artwork. Frame numbers are storage names, not attachment positions.
 - `public/resources/`: images extracted from the supplied portfolio PDF.
 - The logo, portrait, and work images are retained in public/resources and deployed with the site. Pinned GitHub copies remain available for image recovery.
-- The logo is smaller and left-aligned. Explicit type sizes are increased by 1px, including responsive headings; project descriptions have an additional 2pt increase; the About image uses a top-centered three-quarter crop inside its 4:5 frame, keeping the face and upper trousers prominent.
+- The cleaned logo is smaller and left-aligned (170px on desktop, 132px through 800px). Explicit type sizes are increased by 1px, including responsive headings; project descriptions have an additional 2pt increase; the About image uses a top-centered three-quarter crop inside its 4:5 frame, keeping the face and upper trousers prominent.
 - `tests/portfolio.spec.ts`: executable browser checks.
 - `tests/tests.json`: workflow descriptions prepared for AppDeploy validation.
 
@@ -100,8 +100,9 @@ from 320px through 1440px.
 
 The hero states the full offer: From brand identity to the final print.
 Its three artwork examples open the matching branding, packaging, and event-print
-project previews. Desktop retains floating cards; smaller screens use a native
-horizontal gallery with a visible browsing hint. Full artwork uses contain
+project previews. Desktop retains floating cards. Through 800px, all three examples form a compact,
+overlapping composition inspired by the AppDeploy reference, with no horizontal
+swipe required. Full artwork uses contain
 framing, and the reduced-motion setting remains supported.
 
 Services follow the supplied reference: a centered heading and four numbered,
@@ -141,3 +142,22 @@ through its Git integration and does not need a separate CLI deployment step.
 GitHub Actions type-checks and builds the site, validates the optional Worker
 backup configuration, runs browser tests, and uploads desktop/mobile screenshots.
 To retry a Pages build, use the project's Deployments page in Cloudflare.
+
+## Header logo and reference responsiveness
+
+The clean high-resolution transparent mark is in
+`public/resources/phemxy-logo-clean.png`. It removes the original white matte
+fringe while retaining the purple/orange brand artwork. The original
+`phemxy-logo.png` is kept as a source reference. Header and footer use the clean
+asset, and failed requests recover using the same clean image pinned in GitHub.
+
+The responsive rules follow the supplied AppDeploy reference: navigation changes
+to Menu through 800px, project columns change from three to two through 800px and
+one through 600px, and services/About become one column through 600px. The mobile
+hero now keeps all three projects together in a floating, overlapping composition.
+The full-width phone/tablet testimonial improvement remains in place through
+1100px. Reduced-motion preferences continue to disable animation.
+
+`tests/brand-responsive.spec.ts` checks transparent logo pixels, removal of
+visible white matte pixels, sufficiently detailed source dimensions, the smaller
+header size, same-artwork failover, and layout fit across 320–1440px.

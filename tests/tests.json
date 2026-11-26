@@ -35,7 +35,7 @@
       "about introduction",
       "email and phone contact",
       "responsive layout",
-      "uploaded header logo",
+      "clean transparent header logo",
       "logo alignment",
       "frame 1 portrait",
       "left aligned smaller logo",
@@ -45,11 +45,14 @@
       "text services layout",
       "four service descriptions",
       "two-column services on desktop",
-      "single-column services on mobile"
+      "single-column services on mobile",
+      "logo edge cleanup",
+      "smaller header logo",
+      "reference mobile hero composition"
     ],
     "description": "Verify mobile visitors can reach the portfolio content and contact options.",
     "steps": [
-      "Confirm the smaller Phemxy Concepts logo appears at the top left.",
+      "Confirm the clean purple/orange Phemxy Concepts logo is smaller at the top left, with transparent edges and no white fringe.",
       "Open Menu and choose Services, then navigate to About me.",
       "Inspect Full branding, Logo design, Print & packaging, and Promotional design. Confirm their numbered text layout stacks into one column on a phone.",
       "Confirm the purple-background portrait is framed as a three-quarter crop, keeping the face, hands, and upper trousers clearly visible.",
@@ -103,7 +106,7 @@
     ],
     "description": "Verify that the original motion plays automatically and the portfolio is navigable.",
     "steps": [
-      "With the browser's reduced-motion setting off, open Home and confirm the branding, packaging and event-print examples appear and float after the entrance.",
+      "With reduced motion off, confirm the branding, packaging and event-print examples float into a compact overlapping composition on phones, with every example visible without swiping.",
       "Scroll through the services strip and brand statement. Confirm that the strip moves, the headline cycles, and no Pause motion button is visible.",
       "Open Plantain Chips and Fufu Powder and confirm the artwork fits the preview. Navigate to About and back to Home using the sticky header.",
       "Scroll through All work to load every project image, then inspect the header and footer logos and the About portrait. Confirm all artwork is visible and no broken-image placeholders remain.",
